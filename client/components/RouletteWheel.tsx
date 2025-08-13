@@ -7,27 +7,31 @@ interface RouletteWheelProps {
   className?: string;
 }
 
-// Roulette numbers in European wheel order
-const ROULETTE_NUMBERS = [
-  0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5,
-  24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+// Robux prizes with weights (smaller prizes more common)
+const ROBUX_PRIZES = [
+  { amount: 1, weight: 30, color: "bg-blue-500" },
+  { amount: 2, weight: 25, color: "bg-green-500" },
+  { amount: 5, weight: 20, color: "bg-purple-500" },
+  { amount: 1, weight: 15, color: "bg-blue-500" },
+  { amount: 10, weight: 8, color: "bg-orange-500" },
+  { amount: 3, weight: 12, color: "bg-cyan-500" },
+  { amount: 1, weight: 20, color: "bg-blue-500" },
+  { amount: 25, weight: 4, color: "bg-red-500" },
+  { amount: 2, weight: 18, color: "bg-green-500" },
+  { amount: 50, weight: 2, color: "bg-yellow-500" },
+  { amount: 1, weight: 25, color: "bg-blue-500" },
+  { amount: 5, weight: 15, color: "bg-purple-500" },
+  { amount: 1, weight: 20, color: "bg-blue-500" },
+  { amount: 100, weight: 1, color: "bg-pink-500" },
+  { amount: 3, weight: 16, color: "bg-cyan-500" },
+  { amount: 2, weight: 22, color: "bg-green-500" },
+  { amount: 1, weight: 25, color: "bg-blue-500" },
+  { amount: 10, weight: 6, color: "bg-orange-500" }
 ];
-
-// Prize values corresponding to the wheel positions  
-const PRIZE_VALUES = [100, 10, 30, 20, 50];
 
 export function RouletteWheel({ onSpinComplete, isSpinning, className }: RouletteWheelProps) {
   const [rotation, setRotation] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  const getNumberColor = (num: number): string => {
-    if (num === 0) return "text-roulette-green bg-roulette-green";
-    // Traditional roulette red/black pattern
-    const redNumbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
-    return redNumbers.includes(num) 
-      ? "text-white bg-roulette-red" 
-      : "text-white bg-roulette-black";
-  };
 
   const spin = () => {
     if (isAnimating) return;
@@ -36,8 +40,8 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
     
     // Calculate random final position
     const extraSpins = 5 + Math.random() * 3; // 5-8 full rotations
-    const randomIndex = Math.floor(Math.random() * ROULETTE_NUMBERS.length);
-    const sectionAngle = 360 / ROULETTE_NUMBERS.length;
+    const randomIndex = Math.floor(Math.random() * ROBUX_PRIZES.length);
+    const sectionAngle = 360 / ROBUX_PRIZES.length;
     const finalAngle = randomIndex * sectionAngle;
     const totalRotation = extraSpins * 360 + finalAngle;
     
@@ -46,8 +50,8 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
     // Animation completes after 4 seconds (matching CSS)
     setTimeout(() => {
       setIsAnimating(false);
-      const resultNumber = ROULETTE_NUMBERS[randomIndex];
-      onSpinComplete(resultNumber);
+      const resultRobux = ROBUX_PRIZES[randomIndex].amount;
+      onSpinComplete(resultRobux);
     }, 4000);
   };
 
@@ -79,9 +83,9 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
               transition: isAnimating ? 'transform 4s cubic-bezier(0.23, 1, 0.32, 1)' : 'none'
             }}
           >
-            {/* Numbers around the wheel */}
-            {ROULETTE_NUMBERS.map((number, index) => {
-              const angle = (index * 360) / ROULETTE_NUMBERS.length;
+            {/* Robux prizes around the wheel */}
+            {ROBUX_PRIZES.map((prize, index) => {
+              const angle = (index * 360) / ROBUX_PRIZES.length;
               const radians = (angle * Math.PI) / 180;
               const radius = 140;
               const x = Math.cos(radians - Math.PI / 2) * radius;
@@ -98,18 +102,19 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
                   }}
                 >
                   <div className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 border-yellow-400 shadow-lg",
-                    getNumberColor(number)
+                    "w-10 h-10 rounded-full flex flex-col items-center justify-center text-xs font-bold border-2 border-yellow-400 shadow-lg text-white",
+                    prize.color
                   )}>
-                    {number}
+                    <div className="text-[10px]">{prize.amount}</div>
+                    <div className="text-[8px]">R$</div>
                   </div>
                 </div>
               );
             })}
 
-            {/* Center circle */}
+            {/* Center circle with Robux logo */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 border-4 border-yellow-300 shadow-lg flex items-center justify-center">
-              <div className="w-6 h-6 rounded-full bg-gray-800"></div>
+              <div className="text-gray-800 font-bold text-xs">R$</div>
             </div>
           </div>
         </div>
