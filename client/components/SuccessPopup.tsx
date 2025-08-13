@@ -37,6 +37,9 @@ export function SuccessPopup({ isOpen, username }: SuccessPopupProps) {
           <p className="text-sm text-muted-foreground mb-4">
             Username: <span className="text-roulette-gold font-medium">{username}</span>
           </p>
+          <p className="text-xs text-green-400 mb-2">
+            📋 Username copied to clipboard!
+          </p>
           <div className="text-sm text-muted-foreground">
             Redirecting to Roblox game in 3 seconds...
           </div>
