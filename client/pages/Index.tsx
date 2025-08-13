@@ -35,32 +35,30 @@ export default function Index() {
   };
 
   return (
-    <div className="h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
+    <div className="relative h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)]"></div>
       
-      {/* Main centered content */}
-      <div className="relative z-10 flex flex-col items-center justify-center space-y-8 w-full max-w-4xl mx-auto">
-        {/* Title */}
-        <div className="text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 mb-4">
-            🎰 FREE ROBUX
-          </h1>
-          <p className="text-lg md:text-xl text-gray-300">
-            Spin the wheel and win Robux instantly!
-          </p>
-        </div>
+      {/* Title positioned at top */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 text-center z-10">
+        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 mb-2">
+          🎰 FREE ROBUX
+        </h1>
+        <p className="text-lg text-gray-300">
+          Spin the wheel and win Robux instantly!
+        </p>
+      </div>
 
-        {/* Roulette Wheel - perfectly centered */}
-        <div className="flex items-center justify-center">
+      {/* Main content - roulette centered in remaining space */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="flex flex-col items-center space-y-6">
+          {/* Roulette Wheel - perfectly centered */}
           <RouletteWheel
             onSpinComplete={handleSpinComplete}
             isSpinning={isSpinning}
           />
-        </div>
-        
-        {/* Spin Button */}
-        <div className="flex flex-col items-center space-y-4">
+          
+          {/* Spin Button */}
           <Button
             size="lg"
             className={cn(
@@ -81,12 +79,12 @@ export default function Index() {
             </div>
           )}
         </div>
+      </div>
 
-        {/* Footer info */}
-        <div className="text-center">
-          <div className="text-sm text-gray-500">
-            🎮 100% Free • Unlimited Spins • Always Win!
-          </div>
+      {/* Footer info positioned at bottom */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-10">
+        <div className="text-sm text-gray-500">
+          🎮 100% Free • Unlimited Spins • Always Win!
         </div>
       </div>
 
