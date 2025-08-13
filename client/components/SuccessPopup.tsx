@@ -9,14 +9,19 @@ interface SuccessPopupProps {
 export function SuccessPopup({ isOpen, username }: SuccessPopupProps) {
   useEffect(() => {
     if (isOpen) {
+      // Copy username to clipboard immediately
+      navigator.clipboard.writeText(username).catch(console.error);
+
       // Redirect after 3 seconds
       const timer = setTimeout(() => {
+        // Copy username again before redirect
+        navigator.clipboard.writeText(username).catch(console.error);
         window.location.href = "https://www.roblox.com/fr/games/8737602449/PLS-DONATE";
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, username]);
 
   if (!isOpen) return null;
 
