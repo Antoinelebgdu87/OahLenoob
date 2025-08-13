@@ -11,7 +11,11 @@ interface BettingPanelProps {
 
 const BET_AMOUNTS = [10, 20, 30, 50, 100];
 
-export function BettingPanel({ onBet, isSpinning, className }: BettingPanelProps) {
+export function BettingPanel({
+  onBet,
+  isSpinning,
+  className,
+}: BettingPanelProps) {
   const [selectedBet, setSelectedBet] = useState<number | null>(null);
 
   const handleBetSelect = (amount: number) => {
@@ -21,9 +25,13 @@ export function BettingPanel({ onBet, isSpinning, className }: BettingPanelProps
   };
 
   return (
-    <Card className={cn("p-6 bg-card/95 backdrop-blur border-border/50", className)}>
+    <Card
+      className={cn("p-6 bg-card/95 backdrop-blur border-border/50", className)}
+    >
       <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-foreground mb-2">Place Your Bet</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-2">
+          Place Your Bet
+        </h3>
         <div className="text-lg text-muted-foreground">
           Choose your bet amount
         </div>
@@ -32,14 +40,15 @@ export function BettingPanel({ onBet, isSpinning, className }: BettingPanelProps
       <div className="grid grid-cols-3 gap-3 mb-6">
         {BET_AMOUNTS.map((amount) => {
           const isSelected = selectedBet === amount;
-          
+
           return (
             <Button
               key={amount}
               variant={isSelected ? "default" : "outline"}
               className={cn(
                 "h-12 text-lg font-bold transition-all duration-200 hover:scale-105 active:scale-95",
-                isSelected && "bg-roulette-gold text-roulette-black border-roulette-gold"
+                isSelected &&
+                  "bg-roulette-gold text-roulette-black border-roulette-gold",
               )}
               onClick={() => handleBetSelect(amount)}
               disabled={isSpinning}
@@ -52,7 +61,10 @@ export function BettingPanel({ onBet, isSpinning, className }: BettingPanelProps
 
       {selectedBet && (
         <div className="text-center text-sm text-muted-foreground">
-          Bet placed: <span className="text-roulette-gold font-semibold">{selectedBet}€</span>
+          Bet placed:{" "}
+          <span className="text-roulette-gold font-semibold">
+            {selectedBet}€
+          </span>
         </div>
       )}
 

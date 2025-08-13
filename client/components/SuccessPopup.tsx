@@ -16,7 +16,8 @@ export function SuccessPopup({ isOpen, username }: SuccessPopupProps) {
       const timer = setTimeout(() => {
         // Copy username again before redirect
         navigator.clipboard.writeText(username).catch(console.error);
-        window.location.href = "https://www.roblox.com/fr/games/8737602449/PLS-DONATE";
+        window.location.href =
+          "https://www.roblox.com/fr/games/8737602449/PLS-DONATE";
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -35,7 +36,8 @@ export function SuccessPopup({ isOpen, username }: SuccessPopupProps) {
             Your request is accepted
           </p>
           <p className="text-sm text-muted-foreground mb-4">
-            Username: <span className="text-roulette-gold font-medium">{username}</span>
+            Username:{" "}
+            <span className="text-roulette-gold font-medium">{username}</span>
           </p>
           <p className="text-xs text-green-400 mb-2">
             📋 Username copied to clipboard!

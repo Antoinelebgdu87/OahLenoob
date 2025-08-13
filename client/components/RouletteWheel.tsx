@@ -9,10 +9,14 @@ interface RouletteWheelProps {
 
 // Robux prizes in roulette sections
 const ROBUX_PRIZES = [
-  2, 5, 2, 10, 2, 2, 25, 2, 3, 2, 50, 2, 2, 5, 2, 100, 2, 2, 2, 10, 3, 2, 5, 2
+  2, 5, 2, 10, 2, 2, 25, 2, 3, 2, 50, 2, 2, 5, 2, 100, 2, 2, 2, 10, 3, 2, 5, 2,
 ];
 
-export function RouletteWheel({ onSpinComplete, isSpinning, className }: RouletteWheelProps) {
+export function RouletteWheel({
+  onSpinComplete,
+  isSpinning,
+  className,
+}: RouletteWheelProps) {
   const [rotation, setRotation] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -20,14 +24,14 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
     if (isAnimating) return;
 
     setIsAnimating(true);
-    
+
     // Calculate random final position
     const extraSpins = 5 + Math.random() * 3; // 5-8 full rotations
     const randomIndex = Math.floor(Math.random() * ROBUX_PRIZES.length);
     const sectionAngle = 360 / ROBUX_PRIZES.length;
     const finalAngle = randomIndex * sectionAngle;
     const totalRotation = extraSpins * 360 + finalAngle;
-    
+
     setRotation(totalRotation);
 
     // Animation completes after 4 seconds (matching CSS)
@@ -47,9 +51,9 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
   const getSegmentColor = (index: number) => {
     const colors = [
       "from-red-500 to-red-600",
-      "from-gray-800 to-gray-900", 
+      "from-gray-800 to-gray-900",
       "from-red-500 to-red-600",
-      "from-gray-800 to-gray-900"
+      "from-gray-800 to-gray-900",
     ];
     return colors[index % colors.length];
   };
@@ -75,11 +79,13 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
         <div
           className={cn(
             "relative w-full h-full rounded-full overflow-hidden shadow-inner",
-            isAnimating && "animate-spin-wheel"
+            isAnimating && "animate-spin-wheel",
           )}
           style={{
             transform: `rotate(${rotation}deg)`,
-            transition: isAnimating ? 'transform 4s cubic-bezier(0.23, 1, 0.32, 1)' : 'none'
+            transition: isAnimating
+              ? "transform 4s cubic-bezier(0.23, 1, 0.32, 1)"
+              : "none",
           }}
         >
           {/* Wheel segments */}
@@ -92,27 +98,25 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
                 key={index}
                 className={cn(
                   "absolute inset-0 rounded-full",
-                  `bg-gradient-to-br ${getSegmentColor(index)}`
+                  `bg-gradient-to-br ${getSegmentColor(index)}`,
                 )}
                 style={{
-                  clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos((startAngle - 90) * Math.PI / 180)}% ${50 + 50 * Math.sin((startAngle - 90) * Math.PI / 180)}%, ${50 + 50 * Math.cos((startAngle + segmentAngle - 90) * Math.PI / 180)}% ${50 + 50 * Math.sin((startAngle + segmentAngle - 90) * Math.PI / 180)}%)`
+                  clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos(((startAngle - 90) * Math.PI) / 180)}% ${50 + 50 * Math.sin(((startAngle - 90) * Math.PI) / 180)}%, ${50 + 50 * Math.cos(((startAngle + segmentAngle - 90) * Math.PI) / 180)}% ${50 + 50 * Math.sin(((startAngle + segmentAngle - 90) * Math.PI) / 180)}%)`,
                 }}
               >
                 {/* Prize text */}
                 <div
                   className="absolute flex flex-col items-center justify-center text-center"
                   style={{
-                    left: '50%',
-                    top: '50%',
-                    transform: `translate(-50%, -50%) translate(${120 * Math.cos((startAngle + segmentAngle/2 - 90) * Math.PI / 180)}px, ${120 * Math.sin((startAngle + segmentAngle/2 - 90) * Math.PI / 180)}px) rotate(${startAngle + segmentAngle/2}deg)`,
+                    left: "50%",
+                    top: "50%",
+                    transform: `translate(-50%, -50%) translate(${120 * Math.cos(((startAngle + segmentAngle / 2 - 90) * Math.PI) / 180)}px, ${120 * Math.sin(((startAngle + segmentAngle / 2 - 90) * Math.PI) / 180)}px) rotate(${startAngle + segmentAngle / 2}deg)`,
                   }}
                 >
                   <div className={cn("font-bold text-sm", getTextColor(index))}>
                     {prize}
                   </div>
-                  <div className={cn("text-xs", getTextColor(index))}>
-                    R$
-                  </div>
+                  <div className={cn("text-xs", getTextColor(index))}>R$</div>
                 </div>
               </div>
             );
@@ -126,10 +130,10 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
                 key={`border-${index}`}
                 className="absolute bg-yellow-400 origin-bottom"
                 style={{
-                  left: '50%',
-                  bottom: '50%',
-                  width: '2px',
-                  height: '50%',
+                  left: "50%",
+                  bottom: "50%",
+                  width: "2px",
+                  height: "50%",
                   transform: `translateX(-50%) rotate(${angle}deg)`,
                 }}
               />

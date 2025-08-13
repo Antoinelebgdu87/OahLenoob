@@ -11,7 +11,12 @@ interface RobloxPopupProps {
   onSubmit: (username: string) => void;
 }
 
-export function RobloxPopup({ isOpen, robuxAmount, onClose, onSubmit }: RobloxPopupProps) {
+export function RobloxPopup({
+  isOpen,
+  robuxAmount,
+  onClose,
+  onSubmit,
+}: RobloxPopupProps) {
   const [username, setUsername] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -19,9 +24,9 @@ export function RobloxPopup({ isOpen, robuxAmount, onClose, onSubmit }: RobloxPo
 
   const handleSubmit = async () => {
     if (!username.trim()) return;
-    
+
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate processing
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate processing
     onSubmit(username.trim());
   };
 
@@ -30,7 +35,9 @@ export function RobloxPopup({ isOpen, robuxAmount, onClose, onSubmit }: RobloxPo
       <Card className="w-full max-w-md mx-4 p-8 bg-gradient-to-br from-card via-card to-muted border-2 border-roulette-gold shadow-2xl">
         <div className="text-center">
           <div className="text-6xl mb-4">🎉</div>
-          <h2 className="text-2xl font-bold text-roulette-gold mb-2">Congratulations!</h2>
+          <h2 className="text-2xl font-bold text-roulette-gold mb-2">
+            Congratulations!
+          </h2>
           <p className="text-xl text-green-400 font-bold mb-2">
             You win {robuxAmount} Robux!
           </p>
@@ -67,7 +74,7 @@ export function RobloxPopup({ isOpen, robuxAmount, onClose, onSubmit }: RobloxPo
                 disabled={!username.trim() || isSubmitting}
                 className={cn(
                   "flex-1 bg-roulette-gold hover:bg-yellow-500 text-roulette-black font-bold",
-                  isSubmitting && "opacity-75"
+                  isSubmitting && "opacity-75",
                 )}
               >
                 {isSubmitting ? "Processing..." : "Validate"}

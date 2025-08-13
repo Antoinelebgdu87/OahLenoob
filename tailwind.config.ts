@@ -86,7 +86,7 @@ export default {
             height: "0",
           },
         },
-        "spin": {
+        spin: {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(var(--rotation, 1800deg))" },
         },
@@ -107,7 +107,10 @@ export default {
         },
         "glow-pulse": {
           "0%, 100%": { boxShadow: "0 0 20px rgba(239, 68, 68, 0.5)" },
-          "50%": { boxShadow: "0 0 40px rgba(239, 68, 68, 0.8), 0 0 60px rgba(251, 146, 60, 0.3)" },
+          "50%": {
+            boxShadow:
+              "0 0 40px rgba(239, 68, 68, 0.8), 0 0 60px rgba(251, 146, 60, 0.3)",
+          },
         },
       },
       animation: {

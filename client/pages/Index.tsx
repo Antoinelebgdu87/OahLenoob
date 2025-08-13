@@ -38,33 +38,30 @@ export default function Index() {
     <>
       {/* Full screen container with simple flexbox centering */}
       <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center">
-        
         {/* Simple centered content */}
         <div className="flex flex-col items-center justify-center space-y-8">
-          
           {/* Title */}
           <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500 tracking-wider">
             🎰 FREE ROBUX
           </h1>
-          
+
           {/* Roulette - directly centered */}
           <RouletteWheel
             onSpinComplete={handleSpinComplete}
             isSpinning={isSpinning}
           />
-          
+
           {/* Spin Button */}
           <Button
             className={cn(
               "px-8 py-3 text-lg font-bold bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-lg rounded-xl transition-all duration-200 hover:shadow-xl tracking-wide uppercase",
-              isSpinning && "opacity-75 cursor-not-allowed"
+              isSpinning && "opacity-75 cursor-not-allowed",
             )}
             onClick={handleSpin}
             disabled={isSpinning}
           >
             {isSpinning ? "Spinning..." : "Spin for Free Robux"}
           </Button>
-
         </div>
       </div>
 
@@ -76,10 +73,7 @@ export default function Index() {
         onSubmit={handleRobloxSubmit}
       />
 
-      <SuccessPopup
-        isOpen={showSuccessPopup}
-        username={submittedUsername}
-      />
+      <SuccessPopup isOpen={showSuccessPopup} username={submittedUsername} />
     </>
   );
 }
