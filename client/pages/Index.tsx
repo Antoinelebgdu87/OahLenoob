@@ -44,7 +44,7 @@ export default function Index() {
           
           {/* Title */}
           <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500">
-            🎰 FREE ROBUX
+            FREE ROBUX
           </h1>
           
           {/* Roulette - directly centered */}
@@ -55,15 +55,14 @@ export default function Index() {
           
           {/* Spin Button */}
           <Button
-            size="lg"
             className={cn(
-              "px-12 py-4 text-2xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-xl transform hover:scale-105",
+              "px-8 py-3 text-lg font-semibold bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-lg rounded-lg transition-all duration-200 hover:shadow-xl",
               isSpinning && "opacity-75 cursor-not-allowed"
             )}
             onClick={handleSpin}
             disabled={isSpinning}
           >
-            {isSpinning ? "🎰 SPINNING..." : "🎯 SPIN FOR FREE ROBUX!"}
+            {isSpinning ? "SPINNING..." : "SPIN FOR FREE ROBUX"}
           </Button>
 
         </div>
