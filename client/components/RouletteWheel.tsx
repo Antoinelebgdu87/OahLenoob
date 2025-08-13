@@ -63,23 +63,25 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
       {/* Outer decorative ring */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl">
         {/* Pointer/Arrow - Beautiful animated indicator */}
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20 animate-indicator-float">
           {/* Animated glow rings */}
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <div className="w-12 h-12 bg-gradient-to-r from-red-400 via-pink-400 to-red-500 rounded-full opacity-40 animate-pulse"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-red-400 via-pink-400 to-red-500 rounded-full opacity-40 animate-glow-pulse"></div>
             <div className="absolute inset-1 w-10 h-10 bg-gradient-to-r from-yellow-300 to-orange-400 rounded-full opacity-60 animate-ping"></div>
           </div>
 
           {/* Floating jewel base */}
-          <div className="relative animate-bounce">
-            {/* Jewel container with floating effect */}
-            <div className="relative transform hover:scale-110 transition-transform duration-300">
+          <div className="relative">
+            {/* Jewel container with sparkle effect */}
+            <div className="relative transform hover:scale-110 transition-transform duration-300 animate-jewel-sparkle">
               {/* Main jewel/crystal */}
-              <div className="w-6 h-6 bg-gradient-to-br from-red-400 via-red-500 to-red-700 rounded-full shadow-2xl border-2 border-red-200 relative overflow-hidden">
+              <div className="w-6 h-6 bg-gradient-to-br from-red-400 via-red-500 to-red-700 rounded-full shadow-2xl border-2 border-red-200 relative overflow-hidden animate-glow-pulse">
                 {/* Inner sparkle */}
                 <div className="absolute inset-1 bg-gradient-to-tr from-red-200 to-transparent rounded-full animate-pulse"></div>
                 {/* Shine effect */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 bg-white/50 rounded-full blur-sm animate-pulse"></div>
+                <div className="absolute -top-1 -left-1 w-3 h-3 bg-white/60 rounded-full blur-sm animate-ping"></div>
+                {/* Additional shine */}
+                <div className="absolute top-0 right-0 w-2 h-2 bg-yellow-200/80 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
               </div>
 
               {/* Arrow emanating from jewel */}
@@ -89,24 +91,28 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
 
                 {/* Main arrow with gradient */}
                 <div className="relative">
-                  <div className="w-0 h-0 border-l-[15px] border-r-[15px] border-b-[25px] border-l-transparent border-r-transparent border-b-gradient-to-b from-red-500 to-red-700 drop-shadow-2xl"></div>
-                  <div className="absolute w-0 h-0 border-l-[15px] border-r-[15px] border-b-[25px] border-l-transparent border-r-transparent border-b-red-600"></div>
+                  <div className="w-0 h-0 border-l-[15px] border-r-[15px] border-b-[25px] border-l-transparent border-r-transparent border-b-red-600 drop-shadow-2xl"></div>
 
                   {/* Inner highlight with moving shine */}
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-r-[10px] border-b-[16px] border-l-transparent border-r-transparent border-b-red-300 animate-pulse"></div>
+                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-r-[10px] border-b-[16px] border-l-transparent border-r-transparent border-b-red-300"></div>
 
                   {/* Moving highlight line */}
-                  <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[12px] border-l-transparent border-r-transparent border-b-white/60"></div>
+                  <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[12px] border-l-transparent border-r-transparent border-b-white/80 animate-pulse"></div>
+
+                  {/* Edge glow */}
+                  <div className="absolute inset-0 w-0 h-0 border-l-[15px] border-r-[15px] border-b-[25px] border-l-transparent border-r-transparent border-b-red-400/50 blur-sm"></div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Sparkling particles */}
-          <div className="absolute -top-2 -left-2 w-1 h-1 bg-yellow-400 rounded-full animate-ping" style={{ animationDelay: '0s' }}></div>
-          <div className="absolute -top-1 left-6 w-1 h-1 bg-red-300 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-          <div className="absolute top-1 -right-2 w-1 h-1 bg-pink-400 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-3 -left-1 w-1 h-1 bg-orange-400 rounded-full animate-ping" style={{ animationDelay: '1.5s' }}></div>
+          {/* Sparkling particles with improved timing */}
+          <div className="absolute -top-2 -left-2 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping shadow-sm" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute -top-1 left-6 w-1 h-1 bg-red-300 rounded-full animate-ping shadow-sm" style={{ animationDelay: '0.7s' }}></div>
+          <div className="absolute top-1 -right-2 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping shadow-sm" style={{ animationDelay: '1.4s' }}></div>
+          <div className="absolute top-3 -left-1 w-1 h-1 bg-orange-400 rounded-full animate-ping shadow-sm" style={{ animationDelay: '2.1s' }}></div>
+          <div className="absolute -top-3 right-1 w-0.5 h-0.5 bg-white rounded-full animate-ping" style={{ animationDelay: '0.3s' }}></div>
+          <div className="absolute top-0 left-8 w-0.5 h-0.5 bg-yellow-200 rounded-full animate-ping" style={{ animationDelay: '1.8s' }}></div>
         </div>
       </div>
 
