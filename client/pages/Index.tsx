@@ -37,7 +37,7 @@ export default function Index() {
   return (
     <>
       {/* Full screen container with simple flexbox centering */}
-      <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center">
+      <div className="fixed bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center" style={{ left: '448px', top: '352px', right: '0px', bottom: '0px' }}>
         
         {/* Simple centered content */}
         <div className="flex flex-col items-center justify-center space-y-8">
