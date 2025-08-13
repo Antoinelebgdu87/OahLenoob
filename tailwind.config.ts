@@ -95,6 +95,20 @@ export default {
           "50%": { transform: "scale(1.1)", opacity: "1" },
           "100%": { transform: "scale(1)", opacity: "1" },
         },
+        "indicator-float": {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-8px) rotate(2deg)" },
+        },
+        "jewel-sparkle": {
+          "0%, 100%": { transform: "scale(1) rotate(0deg)", opacity: "1" },
+          "25%": { transform: "scale(1.1) rotate(90deg)", opacity: "0.8" },
+          "50%": { transform: "scale(1.05) rotate(180deg)", opacity: "1" },
+          "75%": { transform: "scale(1.1) rotate(270deg)", opacity: "0.8" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(239, 68, 68, 0.5)" },
+          "50%": { boxShadow: "0 0 40px rgba(239, 68, 68, 0.8), 0 0 60px rgba(251, 146, 60, 0.3)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
