@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 
 interface RobloxPopupProps {
   isOpen: boolean;
-  winningNumber: number;
+  robuxAmount: number;
   onClose: () => void;
   onSubmit: (username: string) => void;
 }
 
-export function RobloxPopup({ isOpen, winningNumber, onClose, onSubmit }: RobloxPopupProps) {
+export function RobloxPopup({ isOpen, robuxAmount, onClose, onSubmit }: RobloxPopupProps) {
   const [username, setUsername] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,8 +31,8 @@ export function RobloxPopup({ isOpen, winningNumber, onClose, onSubmit }: Roblox
         <div className="text-center">
           <div className="text-6xl mb-4">🎉</div>
           <h2 className="text-2xl font-bold text-roulette-gold mb-2">Congratulations!</h2>
-          <p className="text-lg text-foreground mb-2">
-            You won with number: <span className="font-bold text-roulette-gold">{winningNumber}</span>
+          <p className="text-xl text-green-400 font-bold mb-2">
+            You win {robuxAmount} Robux!
           </p>
           <p className="text-sm text-muted-foreground mb-6">
             Enter your Roblox username to claim your reward
