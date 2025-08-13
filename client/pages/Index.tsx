@@ -49,36 +49,35 @@ export default function Index() {
         </p>
       </div>
 
-      {/* Main content - roulette centered in remaining space */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center space-y-6">
-          {/* Roulette Wheel - perfectly centered */}
-          <RouletteWheel
-            onSpinComplete={handleSpinComplete}
-            isSpinning={isSpinning}
-          />
-          
-          {/* Spin Button */}
-          <Button
-            size="lg"
-            className={cn(
-              "px-10 py-3 text-xl font-bold transition-all duration-200 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 border-2 border-yellow-300",
-              isSpinning && "opacity-75 cursor-not-allowed"
-            )}
-            onClick={handleSpin}
-            disabled={isSpinning}
-          >
-            {isSpinning ? "🎰 SPINNING..." : "🎯 SPIN FOR FREE ROBUX!"}
-          </Button>
-
-          {isSpinning && (
-            <div className="text-center animate-pulse">
-              <div className="text-lg text-yellow-400 font-semibold">
-                🎲 Good luck! You always win Robux!
-              </div>
-            </div>
+      {/* Roulette centered with absolute positioning */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <RouletteWheel
+          onSpinComplete={handleSpinComplete}
+          isSpinning={isSpinning}
+        />
+      </div>
+      
+      {/* Spin Button positioned below roulette */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-56 flex flex-col items-center space-y-4">
+        <Button
+          size="lg"
+          className={cn(
+            "px-10 py-3 text-xl font-bold transition-all duration-200 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 border-2 border-yellow-300",
+            isSpinning && "opacity-75 cursor-not-allowed"
           )}
-        </div>
+          onClick={handleSpin}
+          disabled={isSpinning}
+        >
+          {isSpinning ? "🎰 SPINNING..." : "🎯 SPIN FOR FREE ROBUX!"}
+        </Button>
+
+        {isSpinning && (
+          <div className="text-center animate-pulse">
+            <div className="text-lg text-yellow-400 font-semibold">
+              🎲 Good luck! You always win Robux!
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Footer info positioned at bottom */}
