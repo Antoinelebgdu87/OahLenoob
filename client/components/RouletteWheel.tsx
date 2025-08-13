@@ -9,7 +9,7 @@ interface RouletteWheelProps {
 
 // Robux prizes in roulette sections
 const ROBUX_PRIZES = [
-  1, 5, 1, 10, 2, 1, 25, 1, 3, 1, 50, 2, 1, 5, 1, 100, 1, 2, 1, 10, 3, 1, 5, 1
+  2, 5, 2, 10, 2, 2, 25, 2, 3, 2, 50, 2, 2, 5, 2, 100, 2, 2, 2, 10, 3, 2, 5, 2
 ];
 
 export function RouletteWheel({ onSpinComplete, isSpinning, className }: RouletteWheelProps) {
