@@ -27,6 +27,12 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        roulette: {
+          red: "hsl(var(--roulette-red))",
+          black: "hsl(var(--roulette-black))",
+          green: "hsl(var(--roulette-green))",
+          gold: "hsl(var(--roulette-gold))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -84,6 +90,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "spin-wheel": "spin 4s cubic-bezier(0.23, 1, 0.32, 1) forwards",
+        "bounce-in": "bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
       },
     },
   },
