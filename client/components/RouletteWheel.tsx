@@ -62,9 +62,18 @@ export function RouletteWheel({ onSpinComplete, isSpinning, className }: Roulett
     <div className={cn("relative flex items-center justify-center", className)}>
       {/* Outer decorative ring */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl">
-        {/* Pointer/Arrow - moved here */}
-        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20">
-          <div className="w-0 h-0 border-l-6 border-r-6 border-b-12 border-l-transparent border-r-transparent border-b-yellow-600 drop-shadow-lg"></div>
+        {/* Pointer/Arrow - improved indicator */}
+        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-20">
+          {/* Shadow/glow effect */}
+          <div className="absolute w-8 h-8 bg-red-500/30 rounded-full blur-sm -top-2 left-1/2 transform -translate-x-1/2"></div>
+          {/* Main arrow */}
+          <div className="relative">
+            <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] border-l-transparent border-r-transparent border-b-red-600 drop-shadow-2xl"></div>
+            {/* Inner highlight */}
+            <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[14px] border-l-transparent border-r-transparent border-b-red-400"></div>
+          </div>
+          {/* Decorative circle at top */}
+          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-600 rounded-full border-2 border-red-300 shadow-lg"></div>
         </div>
       </div>
 
