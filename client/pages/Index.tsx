@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { RouletteWheel } from "@/components/RouletteWheel";
 import { BettingPanel } from "@/components/BettingPanel";
 import { GameStats } from "@/components/GameStats";
+import { RobloxPopup } from "@/components/RobloxPopup";
+import { SuccessPopup } from "@/components/SuccessPopup";
 import { cn } from "@/lib/utils";
 
 interface GameResult {
@@ -13,26 +15,26 @@ interface GameResult {
 }
 
 export default function Index() {
-  const [balance, setBalance] = useState(1000);
   const [currentBet, setCurrentBet] = useState<number | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
   const [totalEarnings, setTotalEarnings] = useState(0);
   const [lastResult, setLastResult] = useState<GameResult | undefined>();
-  const [showResult, setShowResult] = useState(false);
+  const [showRobloxPopup, setShowRobloxPopup] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [winningNumber, setWinningNumber] = useState<number>(0);
+  const [submittedUsername, setSubmittedUsername] = useState<string>("");
 
   const handleBet = (amount: number) => {
-    if (balance >= amount && !isSpinning) {
+    if (!isSpinning) {
       setCurrentBet(amount);
-      setBalance(prev => prev - amount);
     }
   };
 
   const handleSpin = () => {
     if (currentBet && !isSpinning) {
       setIsSpinning(true);
-      setShowResult(false);
     }
   };
 
@@ -42,19 +44,16 @@ export default function Index() {
     if (!currentBet) return;
 
     // Simple win condition: win on even numbers (except 0), lose on odd
-    // This gives roughly 50% chance while keeping it simple
     const isWin = resultNumber !== 0 && resultNumber % 2 === 0;
     
-    let winAmount = 0;
     if (isWin) {
-      // Win double the bet amount
-      winAmount = currentBet * 2;
-      setBalance(prev => prev + winAmount);
       setWins(prev => prev + 1);
-      setTotalEarnings(prev => prev + currentBet); // Net gain
+      setTotalEarnings(prev => prev + currentBet);
+      setWinningNumber(resultNumber);
+      setShowRobloxPopup(true);
     } else {
       setLosses(prev => prev + 1);
-      setTotalEarnings(prev => prev - currentBet); // Net loss
+      setTotalEarnings(prev => prev - currentBet);
     }
 
     const result: GameResult = {
@@ -65,17 +64,26 @@ export default function Index() {
 
     setLastResult(result);
     setCurrentBet(null);
-    setShowResult(true);
+  };
+
+  const handleRobloxSubmit = (username: string) => {
+    setSubmittedUsername(username);
+    setShowRobloxPopup(false);
+    setShowSuccessPopup(true);
+  };
+
+  const handleRobloxClose = () => {
+    setShowRobloxPopup(false);
   };
 
   const resetGame = () => {
-    setBalance(1000);
     setCurrentBet(null);
     setWins(0);
     setLosses(0);
     setTotalEarnings(0);
     setLastResult(undefined);
-    setShowResult(false);
+    setShowRobloxPopup(false);
+    setShowSuccessPopup(false);
   };
 
   return (
@@ -87,7 +95,7 @@ export default function Index() {
             🎰 Roulette Royale
           </h1>
           <p className="text-lg text-muted-foreground">
-            Place your bets and spin the wheel of fortune
+            Spin to win Robux! No limits, infinite plays!
           </p>
         </div>
 
@@ -97,7 +105,6 @@ export default function Index() {
             {/* Left Panel - Betting */}
             <div className="space-y-6">
               <BettingPanel
-                balance={balance}
                 onBet={handleBet}
                 isSpinning={isSpinning}
               />
@@ -115,6 +122,7 @@ export default function Index() {
               <RouletteWheel
                 onSpinComplete={handleSpinComplete}
                 isSpinning={isSpinning}
+                className="mx-auto"
               />
               
               <div className="flex flex-col items-center space-y-4">
@@ -129,13 +137,13 @@ export default function Index() {
                   onClick={handleSpin}
                   disabled={!currentBet || isSpinning}
                 >
-                  {isSpinning ? "🎰 SPINNING..." : "🎯 SPIN TO WIN!"}
+                  {isSpinning ? "🎰 SPINNING..." : "🎯 SPIN TO WIN ROBUX!"}
                 </Button>
                 
                 {currentBet && !isSpinning && (
                   <div className="text-center">
                     <div className="text-sm text-muted-foreground">Current Bet</div>
-                    <div className="text-xl font-bold text-roulette-gold">{currentBet}���</div>
+                    <div className="text-xl font-bold text-roulette-gold">{currentBet}€</div>
                   </div>
                 )}
               </div>
@@ -144,7 +152,7 @@ export default function Index() {
             {/* Right Panel - Game Rules & Actions */}
             <div className="space-y-6">
               <Card className="p-6 bg-card/95 backdrop-blur border-border/50">
-                <h3 className="text-lg font-semibold text-foreground mb-4">How to Play</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">How to Win Robux</h3>
                 <div className="space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <span className="text-roulette-gold">1.</span>
@@ -152,7 +160,7 @@ export default function Index() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-roulette-gold">2.</span>
-                    Click "SPIN TO WIN!"
+                    Click "SPIN TO WIN ROBUX!"
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-roulette-gold">3.</span>
@@ -160,33 +168,20 @@ export default function Index() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-roulette-gold">4.</span>
-                    Double your bet when you win!
+                    Enter your Roblox username to claim!
                   </div>
                 </div>
               </Card>
 
-              {showResult && lastResult && (
-                <Card className={cn(
-                  "p-6 border-2 animate-bounce-in",
-                  lastResult.won 
-                    ? "bg-green-900/20 border-green-400" 
-                    : "bg-red-900/20 border-red-400"
-                )}>
+              {lastResult && !lastResult.won && (
+                <Card className="p-6 bg-red-900/20 border-red-400 animate-bounce-in">
                   <div className="text-center">
-                    <div className={cn(
-                      "text-2xl font-bold mb-2",
-                      lastResult.won ? "text-green-400" : "text-red-400"
-                    )}>
-                      {lastResult.won ? "🎉 YOU WIN!" : "💔 YOU LOSE"}
-                    </div>
+                    <div className="text-xl font-bold text-red-400 mb-2">💔 Better luck next time!</div>
                     <div className="text-lg">
                       Number: <span className="font-bold text-roulette-gold">{lastResult.number}</span>
                     </div>
-                    <div className={cn(
-                      "text-lg font-semibold",
-                      lastResult.won ? "text-green-400" : "text-red-400"
-                    )}>
-                      {lastResult.won ? '+' : '-'}{lastResult.amount}€
+                    <div className="text-sm text-muted-foreground mt-2">
+                      Try again! Unlimited spins available.
                     </div>
                   </div>
                 </Card>
@@ -197,23 +192,32 @@ export default function Index() {
                 className="w-full"
                 onClick={resetGame}
               >
-                🔄 Reset Game
+                🔄 Reset Stats
               </Button>
 
-              {balance <= 0 && (
-                <Card className="p-6 bg-red-900/20 border-red-400">
-                  <div className="text-center">
-                    <div className="text-xl font-bold text-red-400 mb-2">Game Over!</div>
-                    <div className="text-sm text-muted-foreground mb-4">
-                      You're out of credits. Reset to play again.
-                    </div>
-                  </div>
-                </Card>
-              )}
+              <Card className="p-4 bg-gradient-to-br from-roulette-gold/10 to-yellow-500/10 border-roulette-gold/30">
+                <div className="text-center">
+                  <div className="text-sm font-medium text-roulette-gold">🎮 FREE ROBUX</div>
+                  <div className="text-xs text-muted-foreground">Infinite plays • No limits</div>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Popups */}
+      <RobloxPopup
+        isOpen={showRobloxPopup}
+        winningNumber={winningNumber}
+        onClose={handleRobloxClose}
+        onSubmit={handleRobloxSubmit}
+      />
+
+      <SuccessPopup
+        isOpen={showSuccessPopup}
+        username={submittedUsername}
+      />
     </div>
   );
 }
