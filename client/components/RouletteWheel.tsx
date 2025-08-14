@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 interface RouletteWheelProps {
   onSpinComplete: (result: number) => void;
   isSpinning: boolean;
+  isBoostActive?: boolean;
   className?: string;
 }
 
