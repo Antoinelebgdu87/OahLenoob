@@ -104,22 +104,22 @@ export function useBoost() {
         toggleMusic();
       }
       
-      // Ctrl - Toggle panel
+      // Ctrl - Show warning popup
       if (e.key === 'Control' && !e.altKey && !e.shiftKey) {
         e.preventDefault();
-        togglePanel();
+        showWarningPopup();
       }
-      
-      // Key 1 - Toggle boost (when panel is open)
-      if (e.key === '1' && boostState.showPanel) {
+
+      // Key 1 - Toggle boost (when warning is open)
+      if (e.key === '1' && boostState.showWarning) {
         e.preventDefault();
         toggleBoost();
       }
-      
-      // Key 2 - Toggle alert (when panel is open)
-      if (e.key === '2' && boostState.showPanel) {
+
+      // Key 2 - Toggle gambling alert (when warning is open)
+      if (e.key === '2' && boostState.showWarning) {
         e.preventDefault();
-        toggleAlert();
+        toggleGamblingAlert();
       }
     };
 
