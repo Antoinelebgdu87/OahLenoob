@@ -138,19 +138,11 @@ export default function Index() {
 
       <SuccessPopup isOpen={showSuccessPopup} username={submittedUsername} />
 
-      {/* Terms Screen */}
-      <TermsScreen
-        isVisible={boostState.showTerms}
-        onAccept={acceptTerms}
+      {/* Boost Timer */}
+      <BoostTimer
+        isActive={boostState.isBoostActive}
+        timeLeft={boostState.timeLeft}
       />
-
-      {/* Boost Timer - only when game is unlocked */}
-      {boostState.gameUnlocked && (
-        <BoostTimer
-          isActive={boostState.isBoostActive}
-          timeLeft={boostState.timeLeft}
-        />
-      )}
     </>
   );
 }
