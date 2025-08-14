@@ -59,8 +59,12 @@ export function useBoost() {
     }));
   }, []);
 
-  const togglePanel = useCallback(() => {
-    setBoostState(prev => ({ ...prev, showPanel: !prev.showPanel }));
+  const showWarningPopup = useCallback(() => {
+    setBoostState(prev => ({ ...prev, showWarning: true }));
+  }, []);
+
+  const hideWarningPopup = useCallback(() => {
+    setBoostState(prev => ({ ...prev, showWarning: false }));
   }, []);
 
   const toggleBoost = useCallback(() => {
@@ -71,8 +75,8 @@ export function useBoost() {
     }));
   }, []);
 
-  const toggleAlert = useCallback(() => {
-    setBoostState(prev => ({ ...prev, isAlertMode: !prev.isAlertMode }));
+  const toggleGamblingAlert = useCallback(() => {
+    setBoostState(prev => ({ ...prev, showGamblingAlert: !prev.showGamblingAlert }));
   }, []);
 
   const toggleMusic = useCallback(() => {
