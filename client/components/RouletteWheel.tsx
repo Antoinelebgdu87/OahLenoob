@@ -16,6 +16,7 @@ const ROBUX_PRIZES = [
 export function RouletteWheel({
   onSpinComplete,
   isSpinning,
+  isBoostActive = false,
   className,
 }: RouletteWheelProps) {
   const [rotation, setRotation] = useState(0);
