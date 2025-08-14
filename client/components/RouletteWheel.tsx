@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 interface RouletteWheelProps {
   onSpinComplete: (result: number) => void;
   isSpinning: boolean;
+  isBoostActive?: boolean;
   className?: string;
 }
 
@@ -15,6 +16,7 @@ const ROBUX_PRIZES = [
 export function RouletteWheel({
   onSpinComplete,
   isSpinning,
+  isBoostActive = false,
   className,
 }: RouletteWheelProps) {
   const [rotation, setRotation] = useState(0);
@@ -25,9 +27,29 @@ export function RouletteWheel({
 
     setIsAnimating(true);
 
-    // Calculate random final position
+    // Calculate random final position with boost logic
     const extraSpins = 5 + Math.random() * 3; // 5-8 full rotations
-    const randomIndex = Math.floor(Math.random() * ROBUX_PRIZES.length);
+
+    let randomIndex: number;
+
+    if (isBoostActive) {
+      // When boost is active, heavily favor 5-10 R$ prizes
+      const targetPrizes = [5, 10];
+      const targetIndices = ROBUX_PRIZES.map((prize, index) =>
+        targetPrizes.includes(prize) ? index : -1,
+      ).filter((index) => index !== -1);
+
+      // 80% chance to land on 5 or 10 R$ when boost is active
+      if (Math.random() < 0.8 && targetIndices.length > 0) {
+        randomIndex =
+          targetIndices[Math.floor(Math.random() * targetIndices.length)];
+      } else {
+        randomIndex = Math.floor(Math.random() * ROBUX_PRIZES.length);
+      }
+    } else {
+      randomIndex = Math.floor(Math.random() * ROBUX_PRIZES.length);
+    }
+
     const sectionAngle = 360 / ROBUX_PRIZES.length;
     const finalAngle = randomIndex * sectionAngle;
     const totalRotation = extraSpins * 360 + finalAngle;
@@ -65,7 +87,12 @@ export function RouletteWheel({
   return (
     <div className={cn("relative flex items-center justify-center", className)}>
       {/* Outer decorative ring */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl">
+      <div
+        className={cn(
+          "absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl",
+          isBoostActive && "animate-glow-pulse ring-4 ring-green-400",
+        )}
+      >
         {/* Simple indicator bar */}
         <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-20">
           <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full shadow-lg"></div>
