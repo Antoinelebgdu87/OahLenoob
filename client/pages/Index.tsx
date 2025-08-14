@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { RouletteWheel } from "@/components/RouletteWheel";
 import { RobloxPopup } from "@/components/RobloxPopup";
 import { SuccessPopup } from "@/components/SuccessPopup";
+import { BoostTimer } from "@/components/BoostTimer";
+import { BoostPanel } from "@/components/BoostPanel";
+import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
 export default function Index() {
