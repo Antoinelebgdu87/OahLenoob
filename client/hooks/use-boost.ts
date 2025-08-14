@@ -113,13 +113,11 @@ export function useBoost() {
     };
 
     window.addEventListener('keydown', handleKeydown);
-    window.addEventListener('keyup', handleKeyup);
-    
+
     return () => {
       window.removeEventListener('keydown', handleKeydown);
-      window.removeEventListener('keyup', handleKeyup);
     };
-  }, [activateBoost, toggleMusic, showWarningPopup, toggleBoost, toggleGamblingAlert, boostState.showWarning]);
+  }, [activateBoost, toggleMusic, showTermsScreen, boostState.gameUnlocked]);
 
   return {
     boostState,
