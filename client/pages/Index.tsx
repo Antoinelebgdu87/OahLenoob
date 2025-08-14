@@ -80,6 +80,25 @@ export default function Index() {
       />
 
       <SuccessPopup isOpen={showSuccessPopup} username={submittedUsername} />
+
+      {/* Boost System Components */}
+      <BoostTimer
+        isActive={boostState.isBoostActive}
+        timeLeft={boostState.timeLeft}
+      />
+
+      <BoostPanel
+        isVisible={boostState.showPanel}
+        isBoostActive={boostState.isBoostActive}
+        isAlertMode={boostState.isAlertMode}
+        onToggleBoost={toggleBoost}
+        onToggleAlert={toggleAlert}
+      />
+
+      {/* Alert mode overlay */}
+      {boostState.isAlertMode && (
+        <div className="fixed inset-0 bg-red-500/10 pointer-events-none z-40 animate-pulse" />
+      )}
     </>
   );
 }
