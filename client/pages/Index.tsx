@@ -4,7 +4,8 @@ import { RouletteWheel } from "@/components/RouletteWheel";
 import { RobloxPopup } from "@/components/RobloxPopup";
 import { SuccessPopup } from "@/components/SuccessPopup";
 import { BoostTimer } from "@/components/BoostTimer";
-import { BoostPanel } from "@/components/BoostPanel";
+import { WarningPopup } from "@/components/WarningPopup";
+import { GamblingWarning } from "@/components/GamblingWarning";
 import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
