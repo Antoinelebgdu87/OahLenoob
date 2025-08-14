@@ -58,11 +58,6 @@ export function GameSelector({ onSelectGame, className }: GameSelectorProps) {
         </div>
       </div>
 
-      {/* Controls Info */}
-      <div className="text-center text-gray-400 text-sm space-y-1">
-        <div>🎮 Contrôles: Ctrl+F1 (Boost) | Ctrl+F2 (Musique)</div>
-        <div>⚡ Les deux jeux supportent le mode boost</div>
-      </div>
     </div>
   );
 }
