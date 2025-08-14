@@ -17,13 +17,13 @@ export function useBoost() {
     backgroundMusic: null,
   });
 
-  // Initialize audio
+  // Initialize audio - Using a similar style music since YouTube can't be directly played
   useEffect(() => {
-    const audio = new Audio('https://www.soundjay.com/misc/sounds/fail-buzzer-02.wav');
+    const audio = new Audio('https://www.chosic.com/wp-content/uploads/2022/05/Scott-Buckley-Legionnaire.mp3');
     audio.loop = true;
-    audio.volume = 0.3;
+    audio.volume = 0.4;
     setBoostState(prev => ({ ...prev, backgroundMusic: audio }));
-    
+
     return () => {
       audio.pause();
       audio.src = '';
