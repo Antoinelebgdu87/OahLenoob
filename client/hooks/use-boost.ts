@@ -142,9 +142,10 @@ export function useBoost() {
   return {
     boostState,
     activateBoost,
-    togglePanel,
+    showWarningPopup,
+    hideWarningPopup,
     toggleBoost,
-    toggleAlert,
+    toggleGamblingAlert,
     toggleMusic,
   };
 }
