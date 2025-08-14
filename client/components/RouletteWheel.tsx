@@ -86,7 +86,10 @@ export function RouletteWheel({
   return (
     <div className={cn("relative flex items-center justify-center", className)}>
       {/* Outer decorative ring */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl">
+      <div className={cn(
+        "absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl",
+        isBoostActive && "animate-glow-pulse ring-4 ring-green-400"
+      )}>
         {/* Simple indicator bar */}
         <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-20">
           <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full shadow-lg"></div>
