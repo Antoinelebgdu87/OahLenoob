@@ -24,7 +24,6 @@ export function GameSelector({ onSelectGame, className }: GameSelectorProps) {
         {/* Roulette Game */}
         <div className="bg-gray-900/50 backdrop-blur-sm border-2 border-red-500 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300">
           <div className="space-y-4">
-            <div className="text-6xl">🎲</div>
             <h2 className="text-3xl font-bold text-red-400">ROULETTE</h2>
             <div className="text-gray-300 space-y-2">
               <div>🎯 Faites tourner la roue</div>
