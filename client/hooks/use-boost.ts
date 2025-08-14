@@ -59,25 +59,26 @@ export function useBoost() {
     }));
   }, []);
 
-  const showWarningPopup = useCallback(() => {
-    setBoostState(prev => ({ ...prev, showWarning: true }));
+  const showTermsScreen = useCallback(() => {
+    setBoostState(prev => ({ ...prev, showTerms: true }));
   }, []);
 
-  const hideWarningPopup = useCallback(() => {
-    setBoostState(prev => ({ ...prev, showWarning: false }));
+  const acceptTerms = useCallback(() => {
+    setBoostState(prev => ({
+      ...prev,
+      showTerms: false,
+      gameUnlocked: true
+    }));
   }, []);
 
   const toggleBoost = useCallback(() => {
+    if (!boostState.gameUnlocked) return;
     setBoostState(prev => ({
       ...prev,
       isBoostActive: !prev.isBoostActive,
       timeLeft: prev.isBoostActive ? 0 : 10,
     }));
-  }, []);
-
-  const toggleGamblingAlert = useCallback(() => {
-    setBoostState(prev => ({ ...prev, showGamblingAlert: !prev.showGamblingAlert }));
-  }, []);
+  }, [boostState.gameUnlocked]);
 
   const toggleMusic = useCallback(() => {
     if (boostState.backgroundMusic) {
