@@ -122,10 +122,9 @@ export function useBoost() {
   return {
     boostState,
     activateBoost,
-    showWarningPopup,
-    hideWarningPopup,
+    showTermsScreen,
+    acceptTerms,
     toggleBoost,
-    toggleGamblingAlert,
     toggleMusic,
   };
 }
