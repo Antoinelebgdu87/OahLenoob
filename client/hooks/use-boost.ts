@@ -3,8 +3,8 @@ import { useState, useEffect, useCallback } from 'react';
 export interface BoostState {
   isBoostActive: boolean;
   timeLeft: number;
-  showWarning: boolean;
-  showGamblingAlert: boolean;
+  showTerms: boolean;
+  gameUnlocked: boolean;
   backgroundMusic: HTMLAudioElement | null;
 }
 
