@@ -79,23 +79,6 @@ export default function Index() {
         </div>
       )}
 
-      {/* Welcome screen when game is locked */}
-      {!boostState.gameUnlocked && !boostState.showTerms && (
-        <div className="fixed inset-0 bg-black flex flex-col items-center justify-center">
-          <div className="text-center space-y-8">
-            <h1 className="text-8xl font-black text-yellow-400 tracking-wider">
-              🎰 FREE ROBUX
-            </h1>
-            <div className="text-2xl text-gray-300 space-y-4">
-              <div>Appuyez sur <span className="text-red-400 font-bold">Ctrl+1</span></div>
-              <div>pour commencer à jouer</div>
-            </div>
-            <div className="text-lg text-gray-500">
-              ⚠️ Lecture des règlements obligatoire
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Popups */}
       <RobloxPopup
