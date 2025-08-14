@@ -124,9 +124,9 @@ export function useBoost() {
     };
 
     const handleKeyup = (e: KeyboardEvent) => {
-      // Hide panel when Ctrl is released
+      // Hide warning when Ctrl is released
       if (e.key === 'Control') {
-        setBoostState(prev => ({ ...prev, showPanel: false }));
+        setBoostState(prev => ({ ...prev, showWarning: false }));
       }
     };
 
