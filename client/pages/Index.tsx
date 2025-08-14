@@ -18,7 +18,7 @@ export default function Index() {
   const { boostState, acceptTerms } = useBoost();
 
   const handleSpin = () => {
-    if (!isSpinning) {
+    if (!isSpinning && boostState.gameUnlocked) {
       setIsSpinning(true);
     }
   };
