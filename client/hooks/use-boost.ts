@@ -12,7 +12,7 @@ export function useBoost() {
   const [boostState, setBoostState] = useState<BoostState>({
     isBoostActive: false,
     timeLeft: 0,
-    showTerms: false,
+    showTerms: true,
     gameUnlocked: false,
     backgroundMusic: null,
   });
