@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RouletteWheel } from "@/components/RouletteWheel";
+import { SlotMachine } from "@/components/SlotMachine";
+import { GameSelector } from "@/components/GameSelector";
 import { RobloxPopup } from "@/components/RobloxPopup";
 import { SuccessPopup } from "@/components/SuccessPopup";
 import { BoostTimer } from "@/components/BoostTimer";
-import { TermsScreen } from "@/components/TermsScreen";
 import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
