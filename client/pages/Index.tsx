@@ -107,21 +107,19 @@ export default function Index() {
 
       <SuccessPopup isOpen={showSuccessPopup} username={submittedUsername} />
 
-      {/* Boost System Components */}
-      <BoostTimer
-        isActive={boostState.isBoostActive}
-        timeLeft={boostState.timeLeft}
+      {/* Terms Screen */}
+      <TermsScreen
+        isVisible={boostState.showTerms}
+        onAccept={acceptTerms}
       />
 
-      <WarningPopup
-        isVisible={boostState.showWarning}
-        isBoostActive={boostState.isBoostActive}
-      />
-
-      <GamblingWarning
-        isOpen={boostState.showGamblingAlert}
-        onClose={() => toggleGamblingAlert()}
-      />
+      {/* Boost Timer - only when game is unlocked */}
+      {boostState.gameUnlocked && (
+        <BoostTimer
+          isActive={boostState.isBoostActive}
+          timeLeft={boostState.timeLeft}
+        />
+      )}
     </>
   );
 }
