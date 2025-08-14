@@ -54,6 +54,7 @@ export default function Index() {
           <RouletteWheel
             onSpinComplete={handleSpinComplete}
             isSpinning={isSpinning}
+            isBoostActive={boostState.isBoostActive}
           />
 
           {/* Spin Button */}
