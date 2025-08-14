@@ -10,7 +10,9 @@ import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
 export default function Index() {
-  const [selectedGame, setSelectedGame] = useState<"roulette" | "slots" | null>(null);
+  const [selectedGame, setSelectedGame] = useState<"roulette" | "slots" | null>(
+    null,
+  );
   const [isSpinning, setIsSpinning] = useState(false);
   const [showRobloxPopup, setShowRobloxPopup] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -61,9 +63,7 @@ export default function Index() {
     <>
       <div className="fixed inset-0 bg-black flex flex-col items-center justify-center">
         {/* Game Selection Screen */}
-        {!selectedGame && (
-          <GameSelector onSelectGame={handleGameSelect} />
-        )}
+        {!selectedGame && <GameSelector onSelectGame={handleGameSelect} />}
 
         {/* Roulette Game */}
         {selectedGame === "roulette" && (
@@ -126,7 +126,6 @@ export default function Index() {
           </div>
         )}
       </div>
-
 
       {/* Popups */}
       <RobloxPopup

@@ -42,7 +42,9 @@ export function GameSelector({ onSelectGame, className }: GameSelectorProps) {
         {/* Slot Machine Game */}
         <div className="bg-gray-900/50 backdrop-blur-sm border-2 border-yellow-500 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300">
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-yellow-400">MACHINE À SOUS</h2>
+            <h2 className="text-3xl font-bold text-yellow-400">
+              MACHINE À SOUS
+            </h2>
             <div className="text-gray-300 space-y-2">
               <div>🍒 Alignez 3 symboles</div>
               <div>💎 Jusqu'à 100 R$ le jackpot</div>
@@ -57,7 +59,6 @@ export function GameSelector({ onSelectGame, className }: GameSelectorProps) {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

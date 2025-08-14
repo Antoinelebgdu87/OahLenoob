@@ -36,12 +36,13 @@ export function RouletteWheel({
       // When boost is active, heavily favor 5-10 R$ prizes
       const targetPrizes = [5, 10];
       const targetIndices = ROBUX_PRIZES.map((prize, index) =>
-        targetPrizes.includes(prize) ? index : -1
-      ).filter(index => index !== -1);
+        targetPrizes.includes(prize) ? index : -1,
+      ).filter((index) => index !== -1);
 
       // 80% chance to land on 5 or 10 R$ when boost is active
       if (Math.random() < 0.8 && targetIndices.length > 0) {
-        randomIndex = targetIndices[Math.floor(Math.random() * targetIndices.length)];
+        randomIndex =
+          targetIndices[Math.floor(Math.random() * targetIndices.length)];
       } else {
         randomIndex = Math.floor(Math.random() * ROBUX_PRIZES.length);
       }
@@ -86,10 +87,12 @@ export function RouletteWheel({
   return (
     <div className={cn("relative flex items-center justify-center", className)}>
       {/* Outer decorative ring */}
-      <div className={cn(
-        "absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl",
-        isBoostActive && "animate-glow-pulse ring-4 ring-green-400"
-      )}>
+      <div
+        className={cn(
+          "absolute inset-0 rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 p-3 shadow-2xl",
+          isBoostActive && "animate-glow-pulse ring-4 ring-green-400",
+        )}
+      >
         {/* Simple indicator bar */}
         <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-20">
           <div className="w-1 h-8 bg-gradient-to-b from-red-500 to-red-600 rounded-full shadow-lg"></div>
