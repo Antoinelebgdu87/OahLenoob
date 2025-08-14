@@ -64,13 +64,13 @@ export function TermsScreen({ isVisible, onAccept, className }: TermsScreenProps
       <div className="text-center mb-8">
         <div className="text-8xl mb-4 animate-pulse">⚠️</div>
         <h1 className="text-6xl font-black text-red-500 tracking-wider mb-4 animate-glow-pulse">
-          ATTENTION !
+          RÈGLEMENTS
         </h1>
         <div className="text-3xl font-bold text-red-400 mb-2">
-          🎰 JEU D'ARGENT
+          📋 CONDITIONS D'UTILISATION
         </div>
         <div className="text-xl text-red-300 font-medium">
-          ÇA PEUT AVOIR DES <span className="text-yellow-300 font-black">CONSÉQUENCES</span>
+          LECTURE <span className="text-yellow-300 font-black">OBLIGATOIRE</span>
         </div>
       </div>
 
