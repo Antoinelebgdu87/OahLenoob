@@ -10,13 +10,14 @@ import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
 export default function Index() {
+  const [selectedGame, setSelectedGame] = useState<"roulette" | "slots" | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [showRobloxPopup, setShowRobloxPopup] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [robuxWon, setRobuxWon] = useState<number>(0);
   const [submittedUsername, setSubmittedUsername] = useState<string>("");
 
-  const { boostState, acceptTerms } = useBoost();
+  const { boostState } = useBoost();
 
   const handleSpin = () => {
     if (!isSpinning && boostState.gameUnlocked) {
