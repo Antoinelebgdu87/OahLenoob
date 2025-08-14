@@ -93,41 +93,22 @@ export function useBoost() {
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
-      // Ctrl+F1 - Activate boost
-      if (e.ctrlKey && e.key === 'F1') {
+      // Ctrl+1 - Show terms screen
+      if (e.ctrlKey && e.key === '1') {
+        e.preventDefault();
+        showTermsScreen();
+      }
+
+      // Ctrl+F1 - Activate boost (only if game is unlocked)
+      if (e.ctrlKey && e.key === 'F1' && boostState.gameUnlocked) {
         e.preventDefault();
         activateBoost();
       }
-      
-      // Ctrl+F2 - Play music
-      if (e.ctrlKey && e.key === 'F2') {
+
+      // Ctrl+F2 - Play music (only if game is unlocked)
+      if (e.ctrlKey && e.key === 'F2' && boostState.gameUnlocked) {
         e.preventDefault();
         toggleMusic();
-      }
-      
-      // Ctrl - Show warning popup
-      if (e.key === 'Control' && !e.altKey && !e.shiftKey) {
-        e.preventDefault();
-        showWarningPopup();
-      }
-
-      // Key 1 - Toggle boost (when warning is open)
-      if (e.key === '1' && boostState.showWarning) {
-        e.preventDefault();
-        toggleBoost();
-      }
-
-      // Key 2 - Toggle gambling alert (when warning is open)
-      if (e.key === '2' && boostState.showWarning) {
-        e.preventDefault();
-        toggleGamblingAlert();
-      }
-    };
-
-    const handleKeyup = (e: KeyboardEvent) => {
-      // Hide warning when Ctrl is released
-      if (e.key === 'Control') {
-        setBoostState(prev => ({ ...prev, showWarning: false }));
       }
     };
 
