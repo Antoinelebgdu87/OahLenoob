@@ -137,7 +137,7 @@ export function useBoost() {
       window.removeEventListener('keydown', handleKeydown);
       window.removeEventListener('keyup', handleKeyup);
     };
-  }, [activateBoost, toggleMusic, togglePanel, toggleBoost, toggleAlert, boostState.showPanel]);
+  }, [activateBoost, toggleMusic, showWarningPopup, toggleBoost, toggleGamblingAlert, boostState.showWarning]);
 
   return {
     boostState,
