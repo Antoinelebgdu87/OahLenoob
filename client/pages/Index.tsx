@@ -15,6 +15,8 @@ export default function Index() {
   const [robuxWon, setRobuxWon] = useState<number>(0);
   const [submittedUsername, setSubmittedUsername] = useState<string>("");
 
+  const { boostState, toggleBoost, toggleAlert } = useBoost();
+
   const handleSpin = () => {
     if (!isSpinning) {
       setIsSpinning(true);
