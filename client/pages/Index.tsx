@@ -88,18 +88,15 @@ export default function Index() {
         timeLeft={boostState.timeLeft}
       />
 
-      <BoostPanel
-        isVisible={boostState.showPanel}
+      <WarningPopup
+        isVisible={boostState.showWarning}
         isBoostActive={boostState.isBoostActive}
-        isAlertMode={boostState.isAlertMode}
-        onToggleBoost={toggleBoost}
-        onToggleAlert={toggleAlert}
       />
 
-      {/* Alert mode overlay */}
-      {boostState.isAlertMode && (
-        <div className="fixed inset-0 bg-red-500/10 pointer-events-none z-40 animate-pulse" />
-      )}
+      <GamblingWarning
+        isOpen={boostState.showGamblingAlert}
+        onClose={() => toggleGamblingAlert()}
+      />
     </>
   );
 }
