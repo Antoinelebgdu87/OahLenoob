@@ -19,8 +19,17 @@ export default function Index() {
 
   const { boostState } = useBoost();
 
+  const handleGameSelect = (game: "roulette" | "slots") => {
+    setSelectedGame(game);
+  };
+
+  const handleBackToMenu = () => {
+    setSelectedGame(null);
+    setIsSpinning(false);
+  };
+
   const handleSpin = () => {
-    if (!isSpinning && boostState.gameUnlocked) {
+    if (!isSpinning) {
       setIsSpinning(true);
     }
   };
@@ -29,6 +38,13 @@ export default function Index() {
     setIsSpinning(false);
     setRobuxWon(robuxAmount);
     setShowRobloxPopup(true);
+  };
+
+  const handleSlotWin = (robuxAmount: number) => {
+    if (robuxAmount > 0) {
+      setRobuxWon(robuxAmount);
+      setShowRobloxPopup(true);
+    }
   };
 
   const handleRobloxSubmit = (username: string) => {
