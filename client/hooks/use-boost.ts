@@ -12,8 +12,8 @@ export function useBoost() {
   const [boostState, setBoostState] = useState<BoostState>({
     isBoostActive: false,
     timeLeft: 0,
-    showPanel: false,
-    isAlertMode: false,
+    showWarning: false,
+    showGamblingAlert: false,
     backgroundMusic: null,
   });
 
