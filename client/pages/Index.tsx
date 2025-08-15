@@ -99,7 +99,7 @@ export default function Index() {
               onClick={handleSpin}
               disabled={isSpinning}
             >
-              {isSpinning ? "Spinning..." : "🎯 Faire tourner la roue"}
+              {isSpinning ? "Spinning..." : "Faire tourner la roue"}
             </Button>
           </div>
         )}
