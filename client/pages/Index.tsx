@@ -117,7 +117,7 @@ export default function Index() {
 
             {/* Title */}
             <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500 tracking-wider">
-              🎰 MACHINES À SOUS
+              MACHINES À SOUS
             </h1>
 
             {/* Slot Machine */}
