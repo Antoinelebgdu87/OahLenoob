@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface GameSelectorProps {
-  onSelectGame: (game: "roulette" | "slots" | "crash" | "dice") => void;
+  onSelectGame: (game: "roulette" | "slots" | "crash" | "dice" | "nyancat") => void;
   className?: string;
 }
 
