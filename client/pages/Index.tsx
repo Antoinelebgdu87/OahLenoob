@@ -80,7 +80,7 @@ export default function Index() {
 
             {/* Title */}
             <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-500 tracking-wider">
-              🎲 ROULETTE ROBUX
+              ROULETTE ROBUX
             </h1>
 
             {/* Roulette */}
