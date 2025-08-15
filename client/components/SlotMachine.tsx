@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 interface SlotMachineProps {
@@ -87,7 +88,7 @@ export function SlotMachine({
             <h3 className="text-2xl font-bold text-yellow-300">COMMENT JOUER AUX MACHINES À SOUS</h3>
             <div className="grid md:grid-cols-3 gap-4 text-left">
               <div className="bg-gray-800/50 p-4 rounded-lg">
-                <div className="text-yellow-400 font-bold mb-2">ÉTAPE 1</div>
+                <div className="text-yellow-400 font-bold mb-2">��TAPE 1</div>
                 <div className="text-gray-300">Appuyez sur le bouton "SPIN"</div>
               </div>
               <div className="bg-gray-800/50 p-4 rounded-lg">
