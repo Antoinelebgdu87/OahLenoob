@@ -88,9 +88,9 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
             )}
             
             {/* Nyan Cat */}
-            <div 
+            <div
               className={cn(
-                "absolute transition-all duration-100 text-2xl",
+                "absolute transition-all duration-100",
                 isFlying && "animate-bounce"
               )}
               style={{
@@ -99,7 +99,45 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
                 transform: 'translateX(-50%)'
               }}
             >
-              {isFlying ? "🐱‍🚀" : hasLanded ? "😸" : "😺"}
+              <div className="relative">
+                {/* Cat body */}
+                <div className="w-12 h-8 bg-gray-600 rounded-lg relative">
+                  {/* Cat head */}
+                  <div className="absolute -top-2 left-1 w-8 h-6 bg-gray-600 rounded-full">
+                    {/* Eyes */}
+                    <div className="absolute top-1 left-1 w-1 h-1 bg-black rounded-full"></div>
+                    <div className="absolute top-1 right-1 w-1 h-1 bg-black rounded-full"></div>
+                    {/* Nose */}
+                    <div className="absolute top-2 left-3 w-1 h-0.5 bg-pink-400"></div>
+                    {/* Ears */}
+                    <div className="absolute -top-1 left-1 w-0 h-0 border-l-2 border-r-2 border-b-2 border-transparent border-b-gray-600"></div>
+                    <div className="absolute -top-1 right-1 w-0 h-0 border-l-2 border-r-2 border-b-2 border-transparent border-b-gray-600"></div>
+                  </div>
+                  {/* Pop-Tart body */}
+                  <div className="absolute top-1 left-2 w-8 h-4 bg-pink-400 rounded border border-yellow-300">
+                    {/* Sprinkles */}
+                    <div className="absolute top-1 left-1 w-0.5 h-1 bg-red-400"></div>
+                    <div className="absolute top-1 left-3 w-0.5 h-1 bg-blue-400"></div>
+                    <div className="absolute top-1 left-5 w-0.5 h-1 bg-green-400"></div>
+                    <div className="absolute top-2 left-2 w-0.5 h-1 bg-yellow-400"></div>
+                    <div className="absolute top-2 left-4 w-0.5 h-1 bg-purple-400"></div>
+                  </div>
+                  {/* Legs */}
+                  <div className="absolute bottom-0 left-1 w-1 h-2 bg-gray-600"></div>
+                  <div className="absolute bottom-0 left-3 w-1 h-2 bg-gray-600"></div>
+                  <div className="absolute bottom-0 right-3 w-1 h-2 bg-gray-600"></div>
+                  <div className="absolute bottom-0 right-1 w-1 h-2 bg-gray-600"></div>
+                  {/* Tail */}
+                  <div className="absolute top-2 -right-2 w-3 h-1 bg-gray-600 rounded"></div>
+                </div>
+                {/* Status indicator */}
+                {hasLanded && (
+                  <div className="absolute -top-2 -right-2 text-green-400 text-sm">✓</div>
+                )}
+                {height >= maxHeight && (
+                  <div className="absolute -top-2 -right-2 text-red-400 text-sm animate-pulse">!</div>
+                )}
+              </div>
             </div>
             
             {/* Clouds */}
