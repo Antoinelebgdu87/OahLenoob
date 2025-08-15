@@ -51,6 +51,21 @@ export default function Index() {
   const handleSpinComplete = (robuxAmount: number) => {
     setIsSpinning(false);
     setRobuxWon(robuxAmount);
+
+    // Add to history
+    if (currentBet && selectedGame) {
+      const historyEntry: GameHistoryEntry = {
+        id: Date.now().toString(),
+        playerName: currentBet.playerName,
+        game: selectedGame,
+        bet: currentBet.amount,
+        result: robuxAmount > 0 ? "won" : "lost",
+        winnings: robuxAmount,
+        timestamp: new Date(),
+      };
+      setGameHistory(prev => [...prev, historyEntry]);
+    }
+
     setShowRobloxPopup(true);
   };
 
