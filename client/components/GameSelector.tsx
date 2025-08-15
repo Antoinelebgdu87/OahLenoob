@@ -73,6 +73,19 @@ export function GameSelector({ onSelectGame, className }: GameSelectorProps) {
               <div className="text-sm text-gray-300">Gains: Variables</div>
             </div>
           </div>
+
+          {/* Nyan Cat Game */}
+          <div
+            onClick={() => onSelectGame("nyancat")}
+            className="min-w-[200px] bg-gray-900/80 backdrop-blur-sm border-2 border-pink-500 rounded-xl p-4 text-center hover:scale-105 transition-all duration-300 shadow-lg cursor-pointer hover:shadow-pink-500/25"
+          >
+            <div className="space-y-3">
+              <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-xl font-bold text-white border-2 border-pink-400 mx-auto">🐱</div>
+              <h3 className="text-xl font-bold text-pink-400">NYAN CAT</h3>
+              <div className="bg-orange-600 text-white px-2 py-1 rounded-full text-xs font-bold">MOYEN</div>
+              <div className="text-sm text-gray-300">Sauvez le chat!</div>
+            </div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}
