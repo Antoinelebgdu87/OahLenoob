@@ -41,7 +41,9 @@ export default function Index() {
   };
 
   const handleSpin = () => {
-    if (!isSpinning) {
+    if (!isSpinning && !currentBet) {
+      setShowBetModal(true);
+    } else if (currentBet) {
       setIsSpinning(true);
     }
   };
