@@ -4,6 +4,7 @@ import { RouletteWheel } from "@/components/RouletteWheel";
 import { SlotMachine } from "@/components/SlotMachine";
 import { CrashGame } from "@/components/CrashGame";
 import { DiceGame } from "@/components/DiceGame";
+import { NyanCatGame } from "@/components/NyanCatGame";
 import { GameSelector } from "@/components/GameSelector";
 import { RobloxPopup } from "@/components/RobloxPopup";
 import { SuccessPopup } from "@/components/SuccessPopup";
