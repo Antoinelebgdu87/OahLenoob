@@ -93,6 +93,42 @@ export function GameSelector({ onSelectGame, className }: GameSelectorProps) {
           <div className="text-gray-400 text-sm">← Faites défiler pour voir tous les jeux →</div>
         </div>
       </div>
+
+      {/* Game Explanations */}
+      <div className="w-full max-w-4xl mt-8 bg-gray-900/50 border border-gray-700 rounded-xl p-6">
+        <h3 className="text-xl font-bold text-yellow-400 text-center mb-4">EXPLICATIONS DES JEUX</h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+          <div className="bg-red-900/20 p-4 rounded-lg border border-red-500">
+            <h4 className="text-red-400 font-bold mb-2">ROULETTE</h4>
+            <p className="text-gray-300">Cliquez pour faire tourner la roue. Elle s'arrête sur un nombre qui détermine vos gains automatiquement. Aucune stratégie requise !</p>
+          </div>
+
+          <div className="bg-yellow-900/20 p-4 rounded-lg border border-yellow-500">
+            <h4 className="text-yellow-400 font-bold mb-2">MACHINES À SOUS</h4>
+            <p className="text-gray-300">Appuyez sur SPIN et regardez les 3 symboles. Si 3 symboles identiques apparaissent, vous gagnez le jackpot correspondant !</p>
+          </div>
+
+          <div className="bg-purple-900/20 p-4 rounded-lg border border-purple-500">
+            <h4 className="text-purple-400 font-bold mb-2">CRASH GAME</h4>
+            <p className="text-gray-300">Le multiplicateur monte rapidement ! Vous devez cliquer "ENCAISSER" avant qu'il crash pour gagner. Plus vous attendez, plus vous gagnez... mais plus le risque est grand !</p>
+          </div>
+
+          <div className="bg-blue-900/20 p-4 rounded-lg border border-blue-500">
+            <h4 className="text-blue-400 font-bold mb-2">DICE GAME</h4>
+            <p className="text-gray-300">Choisissez un nombre et pariez si le dé sera "PLUS" ou "MOINS" que ce nombre. Plus votre prédiction est risquée, plus vous gagnez !</p>
+          </div>
+
+          <div className="bg-pink-900/20 p-4 rounded-lg border border-pink-500">
+            <h4 className="text-pink-400 font-bold mb-2">NYAN CAT</h4>
+            <p className="text-gray-300">Nyan Cat s'envole ! Sauvez-le en cliquant "SAUVER LE CHAT" avant qu'il s'envole trop haut. Plus il monte, plus vous gagnez !</p>
+          </div>
+
+          <div className="bg-green-900/20 p-4 rounded-lg border border-green-500">
+            <h4 className="text-green-400 font-bold mb-2">SYSTÈME DE MISE</h4>
+            <p className="text-gray-300">Avant chaque partie, entrez votre nom et choisissez votre mise. Vos résultats s'affichent dans l'historique sur le côté !</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
