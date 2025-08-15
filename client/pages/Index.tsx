@@ -9,6 +9,8 @@ import { GameSelector } from "@/components/GameSelector";
 import { RobloxPopup } from "@/components/RobloxPopup";
 import { SuccessPopup } from "@/components/SuccessPopup";
 import { BoostTimer } from "@/components/BoostTimer";
+import { BetModal } from "@/components/BetModal";
+import { GameHistory, GameHistoryEntry } from "@/components/GameHistory";
 import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
