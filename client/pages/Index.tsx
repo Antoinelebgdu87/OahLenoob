@@ -12,7 +12,7 @@ import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
 export default function Index() {
-  const [selectedGame, setSelectedGame] = useState<"roulette" | "slots" | null>(
+  const [selectedGame, setSelectedGame] = useState<"roulette" | "slots" | "crash" | "dice" | null>(
     null,
   );
   const [isSpinning, setIsSpinning] = useState(false);
