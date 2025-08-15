@@ -324,6 +324,21 @@ export default function Index() {
         isActive={boostState.isBoostActive}
         timeLeft={boostState.timeLeft}
       />
+
+      {/* Bet Modal */}
+      <BetModal
+        isOpen={showBetModal}
+        gameName={selectedGame ? getGameName(selectedGame) : ""}
+        onClose={handleBetCancel}
+        onConfirm={handleBetConfirm}
+      />
+
+      {/* Game History Sidebar */}
+      {selectedGame && (
+        <div className="fixed top-4 right-4 z-10">
+          <GameHistory history={gameHistory} />
+        </div>
+      )}
     </>
   );
 }
