@@ -24,6 +24,11 @@ export default function Index() {
   const [robuxWon, setRobuxWon] = useState<number>(0);
   const [submittedUsername, setSubmittedUsername] = useState<string>("");
 
+  // Betting system
+  const [showBetModal, setShowBetModal] = useState(false);
+  const [currentBet, setCurrentBet] = useState<{ playerName: string; amount: number } | null>(null);
+  const [gameHistory, setGameHistory] = useState<GameHistoryEntry[]>([]);
+
   const { boostState } = useBoost();
 
   const handleGameSelect = (game: "roulette" | "slots" | "crash" | "dice" | "nyancat") => {
