@@ -16,12 +16,12 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    
+
     if (isPlaying && !hasWon) {
       // Generate random crash point between 1.1x and 20x
       const crash = Math.random() * 19 + 1.1;
       setCrashPoint(crash);
-      
+
       interval = setInterval(() => {
         setMultiplier(prev => {
           const next = prev + 0.01;
@@ -36,7 +36,7 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
     }
 
     return () => clearInterval(interval);
-  }, [isPlaying, hasWon, crashPoint]);
+  }, [isPlaying, hasWon]);
 
   const startGame = () => {
     setIsPlaying(true);
