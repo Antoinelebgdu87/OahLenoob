@@ -18,13 +18,13 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
     let interval: NodeJS.Timeout;
 
     if (isPlaying && !hasWon) {
-      // Generate random crash point between 2x and 10x (plus facile)
-      const crash = Math.random() * 8 + 2;
+      // Generate random crash point between 1.1x and 5x (plus de chances de crash)
+      const crash = Math.random() * 3.9 + 1.1;
       setCrashPoint(crash);
 
       interval = setInterval(() => {
         setMultiplier(prev => {
-          const next = prev + 0.005; // Plus lent (0.005 au lieu de 0.01)
+          const next = prev + 0.02; // Plus rapide
           if (next >= crash) {
             setIsPlaying(false);
             setHasWon(false);
@@ -32,7 +32,7 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
           }
           return next;
         });
-      }, 100); // Plus lent (100ms au lieu de 50ms)
+      }, 30); // Plus rapide (30ms)
     }
 
     return () => clearInterval(interval);
