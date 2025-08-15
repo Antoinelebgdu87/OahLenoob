@@ -80,70 +80,40 @@ export function SlotMachine({
   };
 
   return (
-    <div className={cn("flex flex-col items-center space-y-6 max-w-4xl mx-auto", className)}>
-      {/* Instructions Panel */}
-      {spinCount === 0 && (
-        <Card className="w-full p-6 bg-gradient-to-r from-yellow-900/30 to-orange-900/30 border-2 border-yellow-400">
-          <div className="text-center space-y-4">
-            <h3 className="text-2xl font-bold text-yellow-300">COMMENT JOUER AUX MACHINES À SOUS</h3>
-            <div className="grid md:grid-cols-3 gap-4 text-left">
-              <div className="bg-gray-800/50 p-4 rounded-lg">
-                <div className="text-yellow-400 font-bold mb-2">��TAPE 1</div>
-                <div className="text-gray-300">Appuyez sur le bouton "SPIN"</div>
-              </div>
-              <div className="bg-gray-800/50 p-4 rounded-lg">
-                <div className="text-yellow-400 font-bold mb-2">ÉTAPE 2</div>
-                <div className="text-gray-300">3 symboles apparaissent dans les rouleaux</div>
-              </div>
-              <div className="bg-gray-800/50 p-4 rounded-lg">
-                <div className="text-yellow-400 font-bold mb-2">ÉTAPE 3</div>
-                <div className="text-gray-300">3 symboles identiques = JACKPOT !</div>
-              </div>
-            </div>
-            <div className="bg-green-900/30 p-3 rounded-lg border border-green-500">
-              <div className="text-green-400 font-bold">🍀 CHANCE</div>
-              <div className="text-green-300">Plus le symbole est rare, plus les gains sont élevés !</div>
-            </div>
-          </div>
-        </Card>
-      )}
-
+    <div className={cn("flex flex-col items-center space-y-4 max-w-2xl mx-auto", className)}>
       {/* Slot Machine Frame */}
       <div
         className={cn(
-          "bg-gradient-to-br from-yellow-400 to-yellow-600 p-8 rounded-3xl shadow-2xl transform transition-all duration-300",
-          isBoostActive && "animate-glow-pulse ring-4 ring-green-400 scale-105",
+          "bg-gradient-to-br from-yellow-400 to-yellow-600 p-4 rounded-2xl shadow-xl",
+          isBoostActive && "ring-2 ring-green-400",
         )}
       >
-        <div className="bg-gray-900 rounded-2xl p-8">
+        <div className="bg-gray-900 rounded-xl p-4">
           {/* Title */}
-          <div className="text-center mb-6">
-            <h2 className="text-4xl font-bold text-yellow-400 mb-2">
+          <div className="text-center mb-4">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-1">
               MACHINES À SOUS
             </h2>
-            <div className="text-lg text-gray-400">Alignez 3 symboles identiques pour gagner !</div>
+            <div className="text-sm text-gray-400">Alignez 3 symboles identiques</div>
             {isBoostActive && (
-              <div className="text-green-400 text-sm font-bold animate-pulse mt-2">
-                🚀 MODE BOOST ACTIF - Meilleurs symboles !
+              <div className="text-green-400 text-xs font-bold mt-1">
+                MODE BOOST ACTIF
               </div>
             )}
           </div>
 
           {/* Reels */}
-          <div className="flex justify-center space-x-4 mb-8">
+          <div className="flex justify-center space-x-3 mb-4">
             {reels.map((symbol, index) => (
               <div
                 key={index}
                 className={cn(
-                  "w-24 h-24 bg-white rounded-2xl flex items-center justify-center text-5xl shadow-2xl border-4 border-gray-300 transform transition-all duration-300",
-                  isSpinning && "animate-bounce",
+                  "w-16 h-16 bg-white rounded-lg flex items-center justify-center text-3xl shadow-lg border-2 border-gray-300",
+                  isSpinning && "animate-pulse",
                 )}
-                style={{
-                  animationDelay: isSpinning ? `${index * 0.1}s` : '0s'
-                }}
               >
                 {isSpinning ? (
-                  <span className="animate-spin text-gray-400">⚡</span>
+                  <span className="text-gray-400">?</span>
                 ) : (
                   <span className="font-bold">{symbol}</span>
                 )}
@@ -153,13 +123,13 @@ export function SlotMachine({
 
           {/* Current Result */}
           {!isSpinning && spinCount > 0 && (
-            <div className="text-center mb-6">
+            <div className="text-center mb-3">
               {reels[0] === reels[1] && reels[1] === reels[2] ? (
-                <div className="text-3xl text-green-500 font-bold animate-bounce">
-                  🎉 JACKPOT ! 🎉
+                <div className="text-xl text-green-500 font-bold">
+                  JACKPOT !
                 </div>
               ) : (
-                <div className="text-lg text-gray-400">
+                <div className="text-sm text-gray-400">
                   Essayez encore !
                 </div>
               )}
@@ -167,39 +137,39 @@ export function SlotMachine({
           )}
 
           {/* Paytable */}
-          <div className="bg-gray-800 rounded-xl p-6 mb-6">
-            <div className="text-yellow-400 text-lg font-bold text-center mb-4">
-              💰 TABLEAU DES GAINS
+          <div className="bg-gray-800 rounded-lg p-3 mb-4">
+            <div className="text-yellow-400 text-sm font-bold text-center mb-2">
+              TABLEAU DES GAINS
             </div>
-            <div className="grid grid-cols-2 gap-3 text-sm text-gray-300">
-              <div className="flex justify-between items-center bg-gray-700/50 p-2 rounded">
-                <span className="font-mono">A A A</span>
-                <span className="text-green-400 font-bold">5 R$</span>
+            <div className="grid grid-cols-2 gap-1 text-xs text-gray-300">
+              <div className="flex justify-between bg-gray-700/50 p-1 rounded">
+                <span>A A A</span>
+                <span className="text-green-400">5 R$</span>
               </div>
-              <div className="flex justify-between items-center bg-gray-700/50 p-2 rounded">
-                <span className="font-mono">K K K</span>
-                <span className="text-green-400 font-bold">10 R$</span>
+              <div className="flex justify-between bg-gray-700/50 p-1 rounded">
+                <span>K K K</span>
+                <span className="text-green-400">10 R$</span>
               </div>
-              <div className="flex justify-between items-center bg-gray-700/50 p-2 rounded">
-                <span className="font-mono">Q Q Q</span>
-                <span className="text-green-400 font-bold">15 R$</span>
+              <div className="flex justify-between bg-gray-700/50 p-1 rounded">
+                <span>Q Q Q</span>
+                <span className="text-green-400">15 R$</span>
               </div>
-              <div className="flex justify-between items-center bg-gray-700/50 p-2 rounded">
-                <span className="font-mono">J J J</span>
-                <span className="text-blue-400 font-bold">25 R$</span>
+              <div className="flex justify-between bg-gray-700/50 p-1 rounded">
+                <span>J J J</span>
+                <span className="text-blue-400">25 R$</span>
               </div>
-              <div className="flex justify-between items-center bg-gray-700/50 p-2 rounded">
-                <span className="font-mono">★ ★ ★</span>
-                <span className="text-purple-400 font-bold">50 R$</span>
+              <div className="flex justify-between bg-gray-700/50 p-1 rounded">
+                <span>★ ★ ★</span>
+                <span className="text-purple-400">50 R$</span>
               </div>
-              <div className="flex justify-between items-center bg-gray-700/50 p-2 rounded">
-                <span className="font-mono">♠ ♠ ♠</span>
-                <span className="text-red-400 font-bold">75 R$</span>
+              <div className="flex justify-between bg-gray-700/50 p-1 rounded">
+                <span>♠ ♠ ♠</span>
+                <span className="text-red-400">75 R$</span>
               </div>
-              <div className="col-span-2 bg-yellow-900/50 p-3 rounded-lg border-2 border-yellow-400">
+              <div className="col-span-2 bg-yellow-900/50 p-2 rounded border border-yellow-400">
                 <div className="flex justify-between items-center">
-                  <span className="font-mono text-yellow-400 text-lg">7 7 7</span>
-                  <span className="text-yellow-400 text-xl font-bold">100 R$ JACKPOT 🎰</span>
+                  <span className="text-yellow-400">7 7 7</span>
+                  <span className="text-yellow-400 font-bold">100 R$ JACKPOT</span>
                 </div>
               </div>
             </div>
@@ -210,22 +180,22 @@ export function SlotMachine({
             onClick={spin}
             disabled={isSpinning}
             className={cn(
-              "w-full py-5 text-2xl font-bold bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg rounded-2xl transition-all duration-200 transform hover:scale-105",
-              isSpinning && "opacity-75 cursor-not-allowed scale-95",
+              "w-full py-3 text-lg font-bold bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg rounded-lg",
+              isSpinning && "opacity-75 cursor-not-allowed",
             )}
           >
-            {isSpinning ? "🎰 SPINNING..." : "🎯 SPIN TO WIN"}
+            {isSpinning ? "SPINNING..." : "SPIN TO WIN"}
           </Button>
 
           {/* Game Stats */}
-          <div className="grid grid-cols-2 gap-4 mt-6 text-center">
-            <div className="bg-gray-800/50 p-3 rounded-lg">
-              <div className="text-gray-400 text-sm">Tours joués</div>
-              <div className="text-white text-xl font-bold">{spinCount}</div>
+          <div className="grid grid-cols-2 gap-2 mt-3 text-center text-xs">
+            <div className="bg-gray-800/50 p-2 rounded">
+              <div className="text-gray-400">Tours</div>
+              <div className="text-white font-bold">{spinCount}</div>
             </div>
-            <div className="bg-gray-800/50 p-3 rounded-lg">
-              <div className="text-gray-400 text-sm">Prochaine chance</div>
-              <div className="text-yellow-400 text-xl font-bold">MAINTENANT !</div>
+            <div className="bg-gray-800/50 p-2 rounded">
+              <div className="text-gray-400">Chance</div>
+              <div className="text-yellow-400 font-bold">BONNE !</div>
             </div>
           </div>
         </div>
