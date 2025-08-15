@@ -107,11 +107,11 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
           <div className="bg-gray-800/50 p-3 rounded text-xs text-gray-300">
             <div className="flex justify-between">
               <span>Mise: 5 R$</span>
-              <span>Max: x10</span>
+              <span>Max: x5</span>
               {isBoostActive && <span className="text-green-400">Boost +50%</span>}
             </div>
-            <div className="text-center mt-1 text-green-400">
-              Mode facile : multiplicateur plus lent
+            <div className="text-center mt-1 text-red-400">
+              Mode rapide : Crash fréquent !
             </div>
           </div>
 
