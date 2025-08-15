@@ -70,6 +70,20 @@ export default function Index() {
   };
 
   const handleSlotWin = (robuxAmount: number) => {
+    // Add to history
+    if (currentBet && selectedGame) {
+      const historyEntry: GameHistoryEntry = {
+        id: Date.now().toString(),
+        playerName: currentBet.playerName,
+        game: selectedGame,
+        bet: currentBet.amount,
+        result: robuxAmount > 0 ? "won" : "lost",
+        winnings: robuxAmount,
+        timestamp: new Date(),
+      };
+      setGameHistory(prev => [...prev, historyEntry]);
+    }
+
     if (robuxAmount > 0) {
       setRobuxWon(robuxAmount);
       setShowRobloxPopup(true);
