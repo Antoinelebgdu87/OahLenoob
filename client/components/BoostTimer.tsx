@@ -20,7 +20,7 @@ export function BoostTimer({ isActive, timeLeft, className }: BoostTimerProps) {
       <div className="flex items-center space-x-2">
         <div className="w-2 h-2 bg-green-300 rounded-full animate-pulse"></div>
         <div className="font-bold text-sm">BOOST MODE: {timeLeft}s</div>
-        <div className="text-xs">🚀 +5-10 R$ chances!</div>
+        <div className="text-xs">+5-10 R$ chances!</div>
       </div>
     </div>
   );
