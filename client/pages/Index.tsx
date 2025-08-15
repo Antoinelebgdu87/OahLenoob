@@ -15,9 +15,9 @@ import { useBoost } from "@/hooks/use-boost";
 import { cn } from "@/lib/utils";
 
 export default function Index() {
-  const [selectedGame, setSelectedGame] = useState<"roulette" | "slots" | "crash" | "dice" | "nyancat" | null>(
-    null,
-  );
+  const [selectedGame, setSelectedGame] = useState<
+    "roulette" | "slots" | "crash" | "dice" | "nyancat" | null
+  >(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [showRobloxPopup, setShowRobloxPopup] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -26,15 +26,19 @@ export default function Index() {
 
   // Betting system
   const [showBetModal, setShowBetModal] = useState(false);
-  const [currentBet, setCurrentBet] = useState<{ playerName: string; amount: number } | null>(null);
+  const [currentBet, setCurrentBet] = useState<{
+    playerName: string;
+    amount: number;
+  } | null>(null);
   const [gameHistory, setGameHistory] = useState<GameHistoryEntry[]>([]);
 
   const { boostState } = useBoost();
 
-  const handleGameSelect = (game: "roulette" | "slots" | "crash" | "dice" | "nyancat") => {
+  const handleGameSelect = (
+    game: "roulette" | "slots" | "crash" | "dice" | "nyancat",
+  ) => {
     setSelectedGame(game);
   };
-
 
   const handleSpin = () => {
     if (!isSpinning && !currentBet) {
@@ -59,7 +63,7 @@ export default function Index() {
         winnings: robuxAmount,
         timestamp: new Date(),
       };
-      setGameHistory(prev => [...prev, historyEntry]);
+      setGameHistory((prev) => [...prev, historyEntry]);
     }
 
     setShowRobloxPopup(true);
@@ -77,7 +81,7 @@ export default function Index() {
         winnings: robuxAmount,
         timestamp: new Date(),
       };
-      setGameHistory(prev => [...prev, historyEntry]);
+      setGameHistory((prev) => [...prev, historyEntry]);
     }
 
     if (robuxAmount > 0) {
@@ -119,7 +123,7 @@ export default function Index() {
       slots: "Machines à sous",
       crash: "Crash Game",
       dice: "Dice Game",
-      nyancat: "Nyan Cat"
+      nyancat: "Nyan Cat",
     };
     return names[game as keyof typeof names] || game;
   };
@@ -162,7 +166,9 @@ export default function Index() {
               {/* Prize Information */}
               {!isSpinning && (
                 <div className="bg-gray-800/50 p-3 rounded-lg max-w-xl mx-auto">
-                  <h4 className="text-yellow-400 font-bold text-center mb-2 text-sm">PRIX DISPONIBLES</h4>
+                  <h4 className="text-yellow-400 font-bold text-center mb-2 text-sm">
+                    PRIX DISPONIBLES
+                  </h4>
                   <div className="grid grid-cols-4 gap-2 text-center text-xs">
                     <div className="bg-red-900/50 p-2 rounded">
                       <div className="text-white font-bold">2 R$</div>
@@ -183,7 +189,9 @@ export default function Index() {
                   </div>
                   {boostState.isBoostActive && (
                     <div className="bg-green-900/30 p-2 rounded mt-2 text-center">
-                      <div className="text-green-400 text-xs font-bold">MODE BOOST ACTIF - 80% chance de gagner 5-10 R$</div>
+                      <div className="text-green-400 text-xs font-bold">
+                        MODE BOOST ACTIF - 80% chance de gagner 5-10 R$
+                      </div>
                     </div>
                   )}
                 </div>

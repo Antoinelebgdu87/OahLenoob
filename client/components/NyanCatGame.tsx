@@ -16,14 +16,14 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    
+
     if (isFlying && !hasLanded) {
       // Generate random max height between 50 and 300 meters
       const maxH = Math.random() * 250 + 50;
       setMaxHeight(maxH);
-      
+
       interval = setInterval(() => {
-        setHeight(prev => {
+        setHeight((prev) => {
           const next = prev + 2; // Le chat monte de 2m par tick
           if (next >= maxH) {
             setIsFlying(false);
@@ -48,19 +48,22 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
     if (isFlying) {
       setIsFlying(false);
       setHasLanded(true);
-      
+
       // Calcul des gains basé sur la hauteur
       const baseWin = Math.floor(height / 10); // 1 R$ par 10m
       const boostMultiplier = isBoostActive ? 1.3 : 1;
       const finalWin = Math.floor(baseWin * boostMultiplier);
-      
+
       onWin(Math.max(finalWin, 1)); // Minimum 1 R$
     }
   };
 
   const getCatPosition = () => {
     const maxDisplayHeight = 200; // pixels max pour l'affichage
-    const displayHeight = Math.min((height / maxHeight) * maxDisplayHeight, maxDisplayHeight);
+    const displayHeight = Math.min(
+      (height / maxHeight) * maxDisplayHeight,
+      maxDisplayHeight,
+    );
     return maxDisplayHeight - displayHeight;
   };
 
@@ -69,34 +72,37 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
       <Card className="w-full p-4 bg-gradient-to-br from-pink-900/20 via-card to-blue-900/20 border-2 border-pink-500">
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold text-pink-400">NYAN CAT</h2>
-          
+
           {/* Game Display */}
-          <div className="bg-black/30 p-4 rounded-lg border border-pink-400 relative overflow-hidden" style={{ height: '250px' }}>
+          <div
+            className="bg-black/30 p-4 rounded-lg border border-pink-400 relative overflow-hidden"
+            style={{ height: "250px" }}
+          >
             {/* Sky background */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-blue-600/20"></div>
-            
+
             {/* Rainbow trail */}
             {isFlying && (
-              <div 
+              <div
                 className="absolute w-full bg-gradient-to-r from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-400 opacity-60 transition-all duration-100"
                 style={{
                   top: `${getCatPosition() + 15}px`,
-                  height: '8px',
-                  left: '0'
+                  height: "8px",
+                  left: "0",
                 }}
               />
             )}
-            
+
             {/* Nyan Cat */}
             <div
               className={cn(
                 "absolute transition-all duration-100",
-                isFlying && "animate-bounce"
+                isFlying && "animate-bounce",
               )}
               style={{
                 top: `${getCatPosition()}px`,
-                left: '50%',
-                transform: 'translateX(-50%)'
+                left: "50%",
+                transform: "translateX(-50%)",
               }}
             >
               <div className="relative">
@@ -132,24 +138,34 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
                 </div>
                 {/* Status indicator */}
                 {hasLanded && (
-                  <div className="absolute -top-2 -right-2 text-green-400 text-sm">✓</div>
+                  <div className="absolute -top-2 -right-2 text-green-400 text-sm">
+                    ✓
+                  </div>
                 )}
                 {height >= maxHeight && (
-                  <div className="absolute -top-2 -right-2 text-red-400 text-sm animate-pulse">!</div>
+                  <div className="absolute -top-2 -right-2 text-red-400 text-sm animate-pulse">
+                    !
+                  </div>
                 )}
               </div>
             </div>
-            
+
             {/* Clouds */}
-            <div className="absolute top-4 left-4 text-white text-xl opacity-60">☁️</div>
-            <div className="absolute top-8 right-8 text-white text-lg opacity-40">☁️</div>
-            <div className="absolute top-16 left-16 text-white text-sm opacity-50">☁️</div>
-            
+            <div className="absolute top-4 left-4 text-white text-xl opacity-60">
+              ☁️
+            </div>
+            <div className="absolute top-8 right-8 text-white text-lg opacity-40">
+              ☁️
+            </div>
+            <div className="absolute top-16 left-16 text-white text-sm opacity-50">
+              ☁️
+            </div>
+
             {/* Height display */}
             <div className="absolute top-2 left-2 bg-black/50 px-2 py-1 rounded text-white text-sm">
               {Math.floor(height)}m
             </div>
-            
+
             {/* Max height warning */}
             {isFlying && height > maxHeight * 0.8 && (
               <div className="absolute top-2 right-2 bg-red-500/80 px-2 py-1 rounded text-white text-xs animate-pulse">
@@ -157,14 +173,14 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
               </div>
             )}
           </div>
-          
+
           {/* Status Messages */}
           {height >= maxHeight && !hasLanded && isFlying && (
             <div className="text-xl text-red-500 font-bold">
               Nyan Cat s'est envolé trop haut !
             </div>
           )}
-          
+
           {hasLanded && (
             <div className="text-xl text-green-500 font-bold">
               Chat sauvé à {Math.floor(height)}m !
@@ -175,7 +191,8 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
           {isFlying && (
             <div className="bg-green-900/30 p-2 rounded border border-green-500 text-sm">
               <span className="text-green-400 font-bold">
-                Gains potentiels : {Math.floor((height / 10) * (isBoostActive ? 1.3 : 1))} R$
+                Gains potentiels :{" "}
+                {Math.floor((height / 10) * (isBoostActive ? 1.3 : 1))} R$
               </span>
             </div>
           )}
@@ -185,7 +202,9 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
             <div className="flex justify-between">
               <span>1 R$ = 10m</span>
               <span>Max: 300m</span>
-              {isBoostActive && <span className="text-green-400">Boost +30%</span>}
+              {isBoostActive && (
+                <span className="text-green-400">Boost +30%</span>
+              )}
             </div>
             <div className="text-center mt-1 text-pink-400">
               Sauvez Nyan Cat avant qu'il s'envole !
@@ -207,7 +226,9 @@ export function NyanCatGame({ onWin, isBoostActive }: NyanCatGameProps) {
                 disabled={height >= maxHeight}
                 className={cn(
                   "w-full py-3 text-lg font-bold bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white rounded-lg",
-                  height >= maxHeight ? "opacity-50 cursor-not-allowed" : "animate-pulse"
+                  height >= maxHeight
+                    ? "opacity-50 cursor-not-allowed"
+                    : "animate-pulse",
                 )}
               >
                 SAUVER LE CHAT

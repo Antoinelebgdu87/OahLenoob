@@ -19,35 +19,35 @@ export function DiceGame({ onWin, isBoostActive }: DiceGameProps) {
   const rollDice = async () => {
     setIsRolling(true);
     setLastWin(null);
-    
+
     // Simulate rolling animation
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     const result = Math.floor(Math.random() * 100) + 1;
     setDiceResult(result);
-    
-    const won = (rollType === "over" && result > prediction) || 
-                 (rollType === "under" && result < prediction);
-    
+
+    const won =
+      (rollType === "over" && result > prediction) ||
+      (rollType === "under" && result < prediction);
+
     if (won) {
       // Calculate payout based on odds
-      const odds = rollType === "over" ? 
-        (100 / (100 - prediction)) : 
-        (100 / prediction);
-      
+      const odds =
+        rollType === "over" ? 100 / (100 - prediction) : 100 / prediction;
+
       const baseWin = Math.floor(5 * odds);
       const boostMultiplier = isBoostActive ? 1.2 : 1;
       const finalWin = Math.floor(baseWin * boostMultiplier);
-      
+
       setLastWin(finalWin);
       onWin(finalWin);
     }
-    
+
     setIsRolling(false);
   };
 
   const getWinChance = () => {
-    return rollType === "over" ? (100 - prediction) : prediction;
+    return rollType === "over" ? 100 - prediction : prediction;
   };
 
   return (
@@ -60,14 +60,14 @@ export function DiceGame({ onWin, isBoostActive }: DiceGameProps) {
           <div className="bg-black/30 p-4 rounded-lg border border-blue-400">
             <div className="text-4xl font-mono text-center mb-2">
               {isRolling ? (
-                <span className="animate-pulse text-blue-400">
-                  ???
-                </span>
+                <span className="animate-pulse text-blue-400">???</span>
               ) : diceResult ? (
-                <span className={cn(
-                  "text-white transition-colors duration-500",
-                  lastWin ? "text-green-500" : "text-red-500"
-                )}>
+                <span
+                  className={cn(
+                    "text-white transition-colors duration-500",
+                    lastWin ? "text-green-500" : "text-red-500",
+                  )}
+                >
                   {diceResult}
                 </span>
               ) : (
@@ -91,7 +91,8 @@ export function DiceGame({ onWin, isBoostActive }: DiceGameProps) {
             {/* Current Prediction Display */}
             {!isRolling && (
               <div className="text-sm text-blue-400">
-                Le dé sera {rollType === "over" ? "PLUS" : "MOINS"} que {prediction}
+                Le dé sera {rollType === "over" ? "PLUS" : "MOINS"} que{" "}
+                {prediction}
               </div>
             )}
           </div>
@@ -150,12 +151,17 @@ export function DiceGame({ onWin, isBoostActive }: DiceGameProps) {
                 </div>
                 <div>
                   <div className="text-blue-400">Multi</div>
-                  <div className="text-yellow-400 font-bold">x{(100 / getWinChance()).toFixed(1)}</div>
+                  <div className="text-yellow-400 font-bold">
+                    x{(100 / getWinChance()).toFixed(1)}
+                  </div>
                 </div>
                 <div>
                   <div className="text-blue-400">Gains</div>
                   <div className="text-green-400 font-bold">
-                    {Math.floor(5 * (100 / getWinChance()) * (isBoostActive ? 1.2 : 1))} R$
+                    {Math.floor(
+                      5 * (100 / getWinChance()) * (isBoostActive ? 1.2 : 1),
+                    )}{" "}
+                    R$
                   </div>
                 </div>
               </div>
@@ -173,7 +179,7 @@ export function DiceGame({ onWin, isBoostActive }: DiceGameProps) {
             disabled={isRolling}
             className={cn(
               "w-full py-3 text-lg font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg",
-              isRolling && "opacity-75 cursor-not-allowed"
+              isRolling && "opacity-75 cursor-not-allowed",
             )}
           >
             {isRolling ? "LANCEMENT..." : "LANCER LE DÉ"}

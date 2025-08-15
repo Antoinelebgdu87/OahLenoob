@@ -11,10 +11,10 @@ interface SlotMachineProps {
 
 const SLOT_SYMBOLS = ["A", "K", "Q", "J", "★", "♠", "7"];
 const ROBUX_PAYOUTS = {
-  "AAA": 5,
-  "KKK": 10,
-  "QQQ": 15,
-  "JJJ": 25,
+  AAA: 5,
+  KKK: 10,
+  QQQ: 15,
+  JJJ: 25,
   "★★★": 50,
   "♠♠♠": 75,
   "777": 100,
@@ -80,7 +80,12 @@ export function SlotMachine({
   };
 
   return (
-    <div className={cn("flex flex-col items-center space-y-4 max-w-2xl mx-auto", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-center space-y-4 max-w-2xl mx-auto",
+        className,
+      )}
+    >
       {/* Slot Machine Frame */}
       <div
         className={cn(
@@ -94,7 +99,9 @@ export function SlotMachine({
             <h2 className="text-2xl font-bold text-yellow-400 mb-1">
               MACHINES À SOUS
             </h2>
-            <div className="text-sm text-gray-400">Alignez 3 symboles identiques</div>
+            <div className="text-sm text-gray-400">
+              Alignez 3 symboles identiques
+            </div>
             {isBoostActive && (
               <div className="text-green-400 text-xs font-bold mt-1">
                 MODE BOOST ACTIF
@@ -129,9 +136,7 @@ export function SlotMachine({
                   JACKPOT !
                 </div>
               ) : (
-                <div className="text-sm text-gray-400">
-                  Essayez encore !
-                </div>
+                <div className="text-sm text-gray-400">Essayez encore !</div>
               )}
             </div>
           )}
@@ -169,7 +174,9 @@ export function SlotMachine({
               <div className="col-span-2 bg-yellow-900/50 p-2 rounded border border-yellow-400">
                 <div className="flex justify-between items-center">
                   <span className="text-yellow-400">7 7 7</span>
-                  <span className="text-yellow-400 font-bold">100 R$ JACKPOT</span>
+                  <span className="text-yellow-400 font-bold">
+                    100 R$ JACKPOT
+                  </span>
                 </div>
               </div>
             </div>

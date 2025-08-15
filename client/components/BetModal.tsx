@@ -11,7 +11,12 @@ interface BetModalProps {
   onConfirm: (playerName: string, betAmount: number) => void;
 }
 
-export function BetModal({ isOpen, gameName, onClose, onConfirm }: BetModalProps) {
+export function BetModal({
+  isOpen,
+  gameName,
+  onClose,
+  onConfirm,
+}: BetModalProps) {
   const [playerName, setPlayerName] = useState("");
   const [betAmount, setBetAmount] = useState(5);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,7 +30,7 @@ export function BetModal({ isOpen, gameName, onClose, onConfirm }: BetModalProps
     await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate processing
     onConfirm(playerName.trim(), betAmount);
     setIsSubmitting(false);
-    
+
     // Reset form
     setPlayerName("");
     setBetAmount(5);
@@ -40,7 +45,7 @@ export function BetModal({ isOpen, gameName, onClose, onConfirm }: BetModalProps
           <h2 className="text-2xl font-bold text-yellow-400">
             PLACER UNE MISE
           </h2>
-          
+
           <div className="bg-gray-800/50 p-4 rounded-lg">
             <div className="text-lg font-semibold text-white mb-1">
               {gameName.toUpperCase()}
@@ -72,7 +77,7 @@ export function BetModal({ isOpen, gameName, onClose, onConfirm }: BetModalProps
               <label className="block text-sm font-medium text-foreground mb-2">
                 Mise en R$ ({betAmount} R$)
               </label>
-              
+
               {/* Preset buttons */}
               <div className="grid grid-cols-3 gap-2 mb-3">
                 {presetBets.map((amount) => (
@@ -98,14 +103,16 @@ export function BetModal({ isOpen, gameName, onClose, onConfirm }: BetModalProps
                 className="w-full"
                 disabled={isSubmitting}
               />
-              
+
               {/* Custom input */}
               <Input
                 type="number"
                 min="1"
                 max="1000"
                 value={betAmount}
-                onChange={(e) => setBetAmount(Math.max(1, Number(e.target.value)))}
+                onChange={(e) =>
+                  setBetAmount(Math.max(1, Number(e.target.value)))
+                }
                 className="text-center mt-2"
                 disabled={isSubmitting}
               />
@@ -116,9 +123,10 @@ export function BetModal({ isOpen, gameName, onClose, onConfirm }: BetModalProps
           <div className="bg-yellow-900/20 p-3 rounded-lg border border-yellow-500">
             <div className="text-yellow-400 font-bold text-sm">RÉSUMÉ</div>
             <div className="text-white">
-              <span className="font-semibold">{playerName || "Joueur"}</span> mise{" "}
-              <span className="text-yellow-400 font-bold">{betAmount} R$</span> sur{" "}
-              <span className="font-semibold">{gameName}</span>
+              <span className="font-semibold">{playerName || "Joueur"}</span>{" "}
+              mise{" "}
+              <span className="text-yellow-400 font-bold">{betAmount} R$</span>{" "}
+              sur <span className="font-semibold">{gameName}</span>
             </div>
           </div>
 

@@ -23,7 +23,7 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
       setCrashPoint(crash);
 
       interval = setInterval(() => {
-        setMultiplier(prev => {
+        setMultiplier((prev) => {
           const next = prev + 0.02; // Plus rapide
           if (next >= crash) {
             setIsPlaying(false);
@@ -48,11 +48,11 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
     if (isPlaying) {
       setIsPlaying(false);
       setHasWon(true);
-      
+
       const baseWin = Math.floor(multiplier * 5);
       const boostMultiplier = isBoostActive ? 1.5 : 1;
       const finalWin = Math.floor(baseWin * boostMultiplier);
-      
+
       onWin(finalWin);
     }
   };
@@ -66,19 +66,21 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
           {/* Game Display */}
           <div className="bg-black/30 p-4 rounded-lg border border-purple-400">
             <div className="text-4xl font-mono text-center mb-2">
-              <span className={cn(
-                "text-white transition-colors duration-200",
-                multiplier >= crashPoint && isPlaying && "text-red-500 animate-pulse"
-              )}>
+              <span
+                className={cn(
+                  "text-white transition-colors duration-200",
+                  multiplier >= crashPoint &&
+                    isPlaying &&
+                    "text-red-500 animate-pulse",
+                )}
+              >
                 {multiplier.toFixed(2)}x
               </span>
             </div>
 
             {/* Status Messages */}
             {multiplier >= crashPoint && !hasWon && isPlaying && (
-              <div className="text-xl text-red-500 font-bold">
-                CRASHED!
-              </div>
+              <div className="text-xl text-red-500 font-bold">CRASHED!</div>
             )}
 
             {hasWon && (
@@ -98,7 +100,8 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
           {isPlaying && (
             <div className="bg-green-900/30 p-2 rounded border border-green-500 text-sm">
               <span className="text-green-400 font-bold">
-                Gains potentiels : {Math.floor(multiplier * 5 * (isBoostActive ? 1.5 : 1))} R$
+                Gains potentiels :{" "}
+                {Math.floor(multiplier * 5 * (isBoostActive ? 1.5 : 1))} R$
               </span>
             </div>
           )}
@@ -108,7 +111,9 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
             <div className="flex justify-between">
               <span>Mise: 5 R$</span>
               <span>Max: x5</span>
-              {isBoostActive && <span className="text-green-400">Boost +50%</span>}
+              {isBoostActive && (
+                <span className="text-green-400">Boost +50%</span>
+              )}
             </div>
             <div className="text-center mt-1 text-red-400">
               Mode rapide : Crash fréquent !
@@ -130,7 +135,9 @@ export function CrashGame({ onWin, isBoostActive }: CrashGameProps) {
                 disabled={multiplier >= crashPoint}
                 className={cn(
                   "w-full py-3 text-lg font-bold bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg",
-                  multiplier >= crashPoint ? "opacity-50 cursor-not-allowed" : "animate-pulse"
+                  multiplier >= crashPoint
+                    ? "opacity-50 cursor-not-allowed"
+                    : "animate-pulse",
                 )}
               >
                 ENCAISSER MAINTENANT
