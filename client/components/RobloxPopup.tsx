@@ -34,8 +34,7 @@ export function RobloxPopup({
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 animate-bounce-in">
       <Card className="w-full max-w-md mx-4 p-8 bg-gradient-to-br from-card via-card to-muted border-2 border-roulette-gold shadow-2xl">
         <div className="text-center">
-          <div className="text-6xl mb-4">🎉</div>
-          <h2 className="text-2xl font-bold text-roulette-gold mb-2">
+          <h2 className="text-2xl font-bold text-roulette-gold mb-4">
             Congratulations!
           </h2>
           <p className="text-xl text-green-400 font-bold mb-2">
