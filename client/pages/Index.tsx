@@ -35,10 +35,6 @@ export default function Index() {
     setSelectedGame(game);
   };
 
-  const handleBackToMenu = () => {
-    setSelectedGame(null);
-    setIsSpinning(false);
-  };
 
   const handleSpin = () => {
     if (!isSpinning && !currentBet) {
