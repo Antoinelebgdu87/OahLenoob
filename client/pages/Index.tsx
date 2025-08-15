@@ -100,6 +100,34 @@ export default function Index() {
     setShowRobloxPopup(false);
   };
 
+  const handleBetConfirm = (playerName: string, betAmount: number) => {
+    setCurrentBet({ playerName, amount: betAmount });
+    setShowBetModal(false);
+    // Start the game automatically after bet
+    setIsSpinning(true);
+  };
+
+  const handleBetCancel = () => {
+    setShowBetModal(false);
+  };
+
+  const handleBackToMenu = () => {
+    setSelectedGame(null);
+    setIsSpinning(false);
+    setCurrentBet(null); // Reset bet when going back
+  };
+
+  const getGameName = (game: string) => {
+    const names = {
+      roulette: "Roulette",
+      slots: "Machines à sous",
+      crash: "Crash Game",
+      dice: "Dice Game",
+      nyancat: "Nyan Cat"
+    };
+    return names[game as keyof typeof names] || game;
+  };
+
   return (
     <>
       <div className="fixed inset-0 bg-black flex flex-col items-center justify-center">
