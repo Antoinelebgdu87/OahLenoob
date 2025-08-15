@@ -8,15 +8,15 @@ interface SlotMachineProps {
   className?: string;
 }
 
-const SLOT_SYMBOLS = ["🍒", "🍋", "🔔", "⭐", "💎", "🍀", "7️⃣"];
+const SLOT_SYMBOLS = ["A", "K", "Q", "J", "★", "♠", "7"];
 const ROBUX_PAYOUTS = {
-  "🍒🍒🍒": 5,
-  "🍋🍋🍋": 10,
-  "🔔🔔🔔": 15,
-  "⭐⭐⭐": 25,
-  "💎💎💎": 50,
-  "🍀🍀🍀": 75,
-  "7️⃣7️⃣7️⃣": 100,
+  "AAA": 5,
+  "KKK": 10,
+  "QQQ": 15,
+  "JJJ": 25,
+  "★★★": 50,
+  "♠♠♠": 75,
+  "777": 100,
 };
 
 export function SlotMachine({
@@ -24,14 +24,14 @@ export function SlotMachine({
   isBoostActive = false,
   className,
 }: SlotMachineProps) {
-  const [reels, setReels] = useState(["🍒", "🍒", "🍒"]);
+  const [reels, setReels] = useState(["A", "A", "A"]);
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinCount, setSpinCount] = useState(0);
 
   const getRandomSymbol = () => {
     if (isBoostActive) {
       // Higher chance for better symbols when boost is active
-      const boostedSymbols = ["⭐", "💎", "🍀", "7️⃣"];
+      const boostedSymbols = ["★", "♠", "7"];
       if (Math.random() < 0.4) {
         return boostedSymbols[
           Math.floor(Math.random() * boostedSymbols.length)
@@ -91,7 +91,7 @@ export function SlotMachine({
           {/* Title */}
           <div className="text-center mb-4">
             <h2 className="text-2xl font-bold text-yellow-400">
-              🎰 SLOT MACHINE
+              SLOT MACHINE
             </h2>
             <div className="text-sm text-gray-400">Match 3 symbols to win!</div>
           </div>
@@ -117,14 +117,14 @@ export function SlotMachine({
               PAYOUTS
             </div>
             <div className="grid grid-cols-2 gap-1 text-xs text-gray-300">
-              <div>🍒🍒🍒 = 5 R$</div>
-              <div>🍋🍋🍋 = 10 R$</div>
-              <div>🔔🔔🔔 = 15 R$</div>
-              <div>⭐⭐⭐ = 25 R$</div>
-              <div>💎💎💎 = 50 R$</div>
-              <div>🍀🍀🍀 = 75 R$</div>
+              <div>AAA = 5 R$</div>
+              <div>KKK = 10 R$</div>
+              <div>QQQ = 15 R$</div>
+              <div>JJJ = 25 R$</div>
+              <div>★★★ = 50 R$</div>
+              <div>♠♠♠ = 75 R$</div>
               <div className="col-span-2 text-center text-yellow-400 font-bold">
-                7️⃣7️⃣7️⃣ = 100 R$ 🎉
+                777 = 100 R$ JACKPOT
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ export function SlotMachine({
               isSpinning && "opacity-75 cursor-not-allowed",
             )}
           >
-            {isSpinning ? "SPINNING..." : "🎯 SPIN TO WIN"}
+            {isSpinning ? "SPINNING..." : "SPIN TO WIN"}
           </Button>
 
           {/* Spin Counter */}
