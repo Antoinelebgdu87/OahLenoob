@@ -23,7 +23,7 @@ export default function Index() {
 
   const { boostState } = useBoost();
 
-  const handleGameSelect = (game: "roulette" | "slots") => {
+  const handleGameSelect = (game: "roulette" | "slots" | "crash" | "dice") => {
     setSelectedGame(game);
   };
 
